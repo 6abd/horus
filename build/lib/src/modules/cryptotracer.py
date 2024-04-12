@@ -4,8 +4,20 @@ import sys
 import json
 import requests
 from colorama import Fore # For text colour.
-import prints
 
+# Config (Prints).
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
+success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
+failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
+prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
+notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
+question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
+alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
+exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
+disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
+command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
 # Pre-run.
 os.system("clear")
 
@@ -23,9 +35,9 @@ with open('var/pipes/api_config.json') as f:
 def cryptotracer():
     
     # Gets the desired currency and address
-    print(f'{prints.notice} What cryptocurrency would you like to use? (Bitcoin, Ethereum, or Binance)')
-    option = input(f'{prints.command}').lower()
-    address = input(f"{prints.question} Enter an address: ")
+    print(f'{notice} What cryptocurrency would you like to use? (Bitcoin, Ethereum, or Binance)')
+    option = input(f'{command}').lower()
+    address = input(f"{question} Enter an address: ")
 
     # Bitcoin
     if option == "bitcoin":
@@ -36,7 +48,7 @@ def cryptotracer():
         # Gets transaction_info base
         transaction_info = requests.get(f"https://blockchain.info/rawaddr/{address}")["txs"]
         
-        print(f"{prints.notice} The balance of this Bitcoin wallet is {balance} BTC")
+        print(f"{notice} The balance of this Bitcoin wallet is {balance} BTC")
 
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0,len(transaction_info)):
@@ -55,7 +67,7 @@ def cryptotracer():
         # Gets transaction_info base
         transaction_info = requests.get(f"https://api.etherscan.io/api?module=account&action=txlist&address={address}&startblock=0&endblock=99999999&page=1&offset=100&sort=desc&apikey={key}").json()["result"]
         
-        print(f"{prints.notice} The balance of this Ethereum wallet is {balance} ETH")
+        print(f"{notice} The balance of this Ethereum wallet is {balance} ETH")
         
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0, len(transaction_info)):
@@ -74,7 +86,7 @@ def cryptotracer():
         # Gets transaction_info base
         transaction_info = requests.get(f"https://api.bscscan.com/api?module=account&action=txlist&address={address}&startblock=0&endblock=99999999&page=1&offset=100&sort=desc&apikey={key2}").json()["result"]
         
-        print(f"{prints.notice} The balance of this Binance wallet is {balance} BNB")
+        print(f"{notice} The balance of this Binance wallet is {balance} BNB")
         
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0, len(transaction_info)):

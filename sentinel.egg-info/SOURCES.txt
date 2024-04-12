@@ -8,7 +8,7 @@ sentinel.egg-info/top_level.txt
 src/__init__.py
 src/apicon.py
 src/main.py
-src/prints.py
+src/py
 src/modules/__init__.py
 src/modules/cryptotracer.py
 src/modules/geolock.py
@@ -21,7 +21,7 @@ src/modules/loki_encryptor.py
 src/modules/loki_keygen.py
 src/modules/macaddr.py
 src/modules/numlook.py
-src/modules/prints.py
+src/modules/py
 src/modules/pvpn.py
 src/modules/shodan.py
 src/modules/template.py
