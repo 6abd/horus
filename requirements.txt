@@ -5,3 +5,4 @@ colorama
 cryptography
 hashcat
 protonvpn-cli
+setuptools
