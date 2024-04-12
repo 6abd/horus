@@ -5,16 +5,16 @@ import argparse # For adding arguments.
 
 
 import etc.init.banner as banner
-import src.main as main
+import sentinal.main as main
 
 # Modules
-import src.apicon as apicon
+import sentinal.apicon as apicon
 # # SECURITY.
 # ENUMERATION.
 # OSINT.
-import src.modules.shodan as shodan
-import src.modules.numlook as numlook
-import src.modules.geolock as geolock
+import sentinal.modules.shodan as shodan
+import sentinal.modules.numlook as numlook
+import sentinal.modules.geolock as geolock
 # CASE-GEN.
 # SDB.
 # Loki.
