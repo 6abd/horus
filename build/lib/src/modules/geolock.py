@@ -1,0 +1,58 @@
+# Imports.
+import shodan as shodan
+import os
+import sys
+import json
+import requests
+from colorama import Fore # For text colour.
+import prints
+
+# Pre-run.
+os.system("clear")
+
+# Hide tracebacks - change to 1 for dev mode.
+sys.tracebacklimit = 0
+
+# API.
+with open('var/pipes/api_config.json') as f:
+    data = json.load(f)
+    key = data["shodan"]
+
+# Program.
+def geolock():
+    # Get API and base.
+    direct_url = ("https://www.shodan.io/")
+    extend_url = ("host/")
+    key_raw = ("/raw?key=")
+    try:
+        # Additional API information.
+        SHODAN_API_KEY = (f"{key}")
+        api = shodan.Shodan(SHODAN_API_KEY)
+        print("\nShodan API:")
+        host_ip = input(f"{prints.question} IP: ")
+        host = api.host(f'{host_ip}')
+        # Print information from API.
+        print(f"{prints.prompt}","Location: {}, {}".format(host.get('country_name', 'n/a'), host.get('city', 'n/a')))
+        print(f"{prints.prompt}","Long/Lat: {} | {}".format(host.get('longitude','n/a'), host.get('latitude','n/a'))) # Get Lat/Long.
+        print("\nReserve API:")    
+        # Reserve API and base.
+        reserve_direct_url = ("http://ip-api.com/")
+        reserve_extend_url = ("json/")
+        r = requests.get(f'{reserve_direct_url}{reserve_extend_url}{host_ip}')
+        r_dict = r.json()
+        # Print information from API.
+        print(f"{prints.prompt}","Location:", r_dict['city'], "|", r_dict['zip'])
+    except shodan.exception.APIError:
+        print(f"\n{prints.alert}Shodan API failed")
+        print("\nReserve API:")    
+        # Reserve API and base.
+        reserve_direct_url = ("http://ip-api.com/")
+        reserve_extend_url = ("json/")
+        r = requests.get(f'{reserve_direct_url}{reserve_extend_url}{host_ip}')
+        r_dict = r.json()
+        # Print information from API.
+        print(f"{prints.prompt}","Location:", r_dict['city'], "|", r_dict['zip'])
+
+# Run geolock module.
+if __name__ == '__main__':
+    geolock()

@@ -1,0 +1,7 @@
+shodan
+dhooks
+nmap
+colorama
+cryptography
+hashcat
+protonvpn-cli
