@@ -49,9 +49,9 @@ def apicon():
         # open, not save? outputs to apicon.json and moval to var/pipes file.
         with open("apicon.json", "w") as outfile:
             json.dump(api_keys, outfile)
-        os.system("mv ./apicon.json ./sentinel/src/modules/var/pipes/api_config.json")
+        os.system("mv ./apicon.json ./src/modules/var/pipes/api_config.json")
         # Checks for update valid.
-        with open('./sentinel/src/modules/var/pipes/api_config.json') as f:
+        with open('./src/modules/var/pipes/api_config.json') as f:
             data = json.load(f)
             validity = ("update")
             if validity in data:

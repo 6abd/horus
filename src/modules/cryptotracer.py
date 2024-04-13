@@ -27,7 +27,7 @@ sys.tracebacklimit = 0
 
 # API.
 # Example, uncomment lines 30-32 if API required.
-with open('./sentinel/src/modules/var/pipes/api_config.json') as f:
+with open('./src/modules/var/pipes/api_config.json') as f:
     data = json.load(f)
     key = data["etherscan"]
     key2 = data["bscscan"]

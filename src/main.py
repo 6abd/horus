@@ -40,6 +40,7 @@ import src.modules.loki_keygen as loki_keygen
 import src.modules.loki_discovery as loki_discovery
 import src.modules.loki_encrypt as loki_encrypt
 import src.modules.loki_decrypt as loki_decrypt
+import src.modules.cryptotracer as cryptotracer
 # FORENSICS.
 
 def main_script():
@@ -169,6 +170,10 @@ def main_script():
             # API config.
             if option == "apicon".lower():
                 apicon.apicon()
+                os._exit(0)
+            
+            if option == "cryptotrace".lower():
+                cryptotracer.cryptotracer()
                 os._exit(0)
         except KeyboardInterrupt:
             print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')

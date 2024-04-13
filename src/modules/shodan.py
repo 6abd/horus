@@ -27,7 +27,7 @@ os.system("clear")
 sys.tracebacklimit = 0
 
 # API.
-with open('./sentinel/src/modules/var/pipes/api_config.json') as f:
+with open('./src/modules/var/pipes/api_config.json') as f:
     data = json.load(f)
     key = data["shodan"]
 
