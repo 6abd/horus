@@ -6,7 +6,6 @@
 
 Sentinel is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
 
-**Project idea originally created by [FoxIDK](https://github.com/foxidk ) over at [Askerdyne Limited](https://askerdyne.com/)**
 
 ## 🤝 Current Contributors
 
