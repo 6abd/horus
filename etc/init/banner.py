@@ -31,7 +31,7 @@ def banner():
         print("                       .....(&&&&&&&&&&&&&&&,,,,,,,,.")
         print("                              ............")
         print("")
-        print(f"                            {Fore.RED}Sentinel{Fore.WHITE} - {motd}{Fore.RESET}")
+        print(f"                            {Fore.RED}Horus{Fore.WHITE} - {motd}{Fore.RESET}")
         print(f"                                       {version}")
         print("                                                                                ")
         print(f"{Fore.RED}  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.   .{Fore.WHITE}")

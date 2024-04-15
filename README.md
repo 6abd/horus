@@ -1,10 +1,10 @@
-# Project | Sentinel
+# Project | Horus
 
 
 
-## 🚀 About Sentinel
+## 🚀 About Horus
 
-Sentinel is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
+Horus is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
 
 
 ## 🤝 Current Contributors
@@ -114,7 +114,7 @@ If the licensor doesn't agree with your method of providing attribution, you mus
 
 ### [»] **SDB**
 ```  
-🔴 Create or search through your custom sentinel database built in SQL.
+🔴 Create or search through your custom horus database built in SQL.
 ```
 
 ### [»] **Loki**

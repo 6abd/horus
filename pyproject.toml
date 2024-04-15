@@ -1,5 +1,5 @@
 [project]
-name = "sentinel"
+name = "horus"
 version = "0.0.0"
 dependencies = [
     "shodan",

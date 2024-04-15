@@ -102,7 +102,7 @@ def main_script():
                 "Casedelete | Delete a case from the system, & it's associated Loki key.")
             section("SDB") ###########################
             command(Fore.YELLOW, 
-                "Create or search through your custom sentinel database built in SQL.")
+                "Create or search through your custom horus database built in SQL.")
             section("Loki") ##########################
             command(Fore.YELLOW, 
                 "Lokien/decrypt | En/decrypt a directory or file with Loki keys!")

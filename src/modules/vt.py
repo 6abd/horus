@@ -38,7 +38,7 @@ with open('./src/modules/var/pipes/api_config.json') as f:
 def vt():
      headers = {
                     "X-Apikey" : key,
-                    "User-Agent" : "Sentinel v.1.0",
+                    "User-Agent" : "Horus v.1.0",
                     "Accept-Encoding" : "gzip, deflate",
                 }
     

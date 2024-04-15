@@ -26,7 +26,7 @@ os.system("clear")
 parser = argparse.ArgumentParser()
 ap = parser.add_mutually_exclusive_group()
 
-ap.add_argument('-apicon', help='Configure the API settings for Sentinel\n', action="store_true")
+ap.add_argument('-apicon', help='Configure the API settings for Horus\n', action="store_true")
 # SECURITY.
 #ap.add_argument('-Torshell', help='\n', action="store_true")
 #ap.add_argument('-Pvpn', help='\n', action="store_true")
@@ -54,7 +54,7 @@ ap.add_argument('-geolock', help='Shodan & auxiliary API based IP tracing & trac
 #ap.add_argument('-Casesecure', help='\n', action="store_true")
 #ap.add_argument('-Casedelete', help='\n', action="store_true")
 # SDB.
-#ap.add_argument('-sdb', help='Create or search through your custom sentinel database built in SQL.\n', action="store_true")
+#ap.add_argument('-sdb', help='Create or search through your custom horus database built in SQL.\n', action="store_true")
 args = vars(parser.parse_args())
 
 
