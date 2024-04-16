@@ -9,10 +9,11 @@
 Horus is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
 
 ## Installation and Usage Instructions
-To get started with this project, follow these steps:
+To get started with this project, you will need Python installed on your device.
+Once it is installed, follow these steps:
 
 1. Clone this repository.
-2. Move to the 'horus' directory.
+2. Move to the 'horus' directory. (Make sure it isn't the outermost folder)
 3. Install dependencies using the following command: ```pip install -r requirements. txt```
 4. In the 'sentinel' directory, run ```python3 horus.py```
 
