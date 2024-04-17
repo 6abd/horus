@@ -1,3 +1,4 @@
 colorama==0.4.6
 cryptography==42.0.5
 Requests==2.31.0
+shodan==1.31.0
