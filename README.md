@@ -26,7 +26,7 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 
 ## 🤝 Current Maintainers
 
-- [Maestro](https://github.com/digitalized-snake) (Me) | Project Lead and Developer
+- [6abd](https://github.com/6abd) (Me) | Project Lead and Developer
 
 ## Contributing
 - If you notice a bug or want to request a feature, make an issue with the appropriate tag
@@ -57,7 +57,7 @@ Contact info:
 - [Fox](https://github.com/1T57H3F0X) | Was Previously Project Manager
 - [Tornado](https://github.com/digitalsilicon) | Was Previously QA
 - [Mart](https://github.com/marvhus) | Was Previously Sr Dev
-- [Maestro](https://github.com/digitalized-snake) (Me) | Was Previously Jr Dev
+- [6abd](https://github.com/6abd) (Me) | Was Previously Jr Dev
 - [Mu](https://github.com/IamMU) | Was Previously Jr Dev
 
 *Some code used can be attributed to [Fox](https://github.com/FoxIDK) and [Askerdyne Ltd.](https://askerdyne.com/), specifically the 'Loki' encryption toolset.*
