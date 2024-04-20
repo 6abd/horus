@@ -33,7 +33,7 @@ with open('./src/modules/var/pipes/api_config.json') as f:
     key2 = data["bscscan"]
 
 # Program.
-def cryptotracer():
+def cryptotrace():
     
     # Gets the desired currency and address
     print(f'{notice} What cryptocurrency would you like to use? (Bitcoin, Ethereum, or Binance)')
@@ -101,4 +101,4 @@ def cryptotracer():
 
 # Run module_name module.
 if __name__ == '__main__':
-    cryptotracer()
+    cryptotrace()
