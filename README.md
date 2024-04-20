@@ -48,7 +48,7 @@ Contact info:
 ```
 
 <p align="center">
-  <img src="https://i.ibb.co/HVwpP9D/Screenshot-2024-04-19-at-11-17-25-PM.png"/>
+  <img src="https://imgtr.ee/images/2024/04/19/c0fa6023b7bbf8b4f999f01f63bbaf4b.png"/>
 </p>
 
 
