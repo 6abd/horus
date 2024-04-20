@@ -101,7 +101,7 @@ if args['pvpn']: # Runs the numlook program.
 if args['shodan']: # Runs the numlook program.
     while True:
         try:
-            shodan.shodan()
+            shodan.run_shodan()
             os._exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")

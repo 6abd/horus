@@ -37,7 +37,7 @@ def banner():
         print(f"{Fore.RED}  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.   .{Fore.WHITE}")
         print(f"{Fore.WHITE}:::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}:::")
         print(f"{Fore.RED}'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `.'{Fore.WHITE}")
-        print(random.choice(tag))
+        # print(random.choice(tag))
 
     except KeyboardInterrupt:
         print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')
