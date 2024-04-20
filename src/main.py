@@ -117,8 +117,8 @@ def main_script():
                 "Autodd | Create disc images & snapshots for later analysis, or mount one!")
             command(Fore.RED, 
                 "Exif | Check exif data on a file, or wipe it clean.")
-            command(Fore.GREEN, 
-                "Geolock | Geo-locate an IP, or exif & meta data.")
+            command(Fore.RED, 
+                "Geo | Geo-locate an IP, or exif & meta data.")
             command(Fore.GREEN, 
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
             command(Fore.RED, 
