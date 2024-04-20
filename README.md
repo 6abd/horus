@@ -24,7 +24,7 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 
 ### ⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.
 
-## 🤝 Current Contributors
+## 🤝 Current Maintainers
 
 - [Maestro](https://github.com/digitalized-snake) (Me) | Project Lead and Developer
 
