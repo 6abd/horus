@@ -1,7 +1,7 @@
 # Project | Horus
 
 <p align="center">
-  <img src="https://i.ibb.co/kcvtBM0/Screenshot-2024-04-15-at-7-01-47-PM.png"/>
+  <img src="https://i.ibb.co/9HvghxG/Screenshot-2024-04-19-at-11-17-49-PM.png"/>
 </p>
 
 ## 🚀 About Horus
@@ -48,7 +48,7 @@ Contact info:
 ```
 
 <p align="center">
-  <img src="https://i.ibb.co/Lrzj2Mf/Screenshot-2024-04-15-at-7-02-02-PM.png"/>
+  <img src="https://i.ibb.co/HVwpP9D/Screenshot-2024-04-19-at-11-17-25-PM.png"/>
 </p>
 
 
