@@ -83,64 +83,64 @@ class Capturing(list):
 if args['apicon']: # Runs the numlook program.
     while True:
         try:
-                apicon.apicon()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            apicon.apicon()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['pvpn']: # Runs the numlook program.
     while True:
         try:
-                pvpn.pvpn()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            pvpn.pvpn()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['shodan']: # Runs the numlook program.
     while True:
         try:
-                shodan.shodan()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            shodan.shodan()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['numlook']: # Runs the numlook program.
     while True:
         try:
-                numlook.numlook()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            numlook.numlook()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['geolock']: # Runs the numlook program.
     while True:
         try:
-                geolock.geolock()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            geolock.geolock()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['mactrace']: # Runs the numlook program.
     while True:
         try:
-                numlook.numlook()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            numlook.numlook()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if args['cryptotrace']: # Runs the numlook program.
     while True:
         try:
-                cryptotrace.cryptotracer()
-                os._exit(0)
-        except:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: ensare failed to run here!\n")
+            cryptotrace.cryptotrace()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
 if __name__ == '__main__':
