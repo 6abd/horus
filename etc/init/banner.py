@@ -4,7 +4,7 @@ import os # Operating System functions.
 from colorama import Fore # For text colour.
 import random # For tagline.
 
-version = ("1.0.1") # Major.Minor.Rev/Build
+version = ("1.2.1") # Major.Minor.Rev/Build
 motd = (f"{Fore.LIGHTRED_EX}Are you worried yet?{Fore.LIGHTRED_EX}") # Always use 20 char max.
 tag = ['                                Access the matrix', '                                Break the system'] # Use spaces to centre the tag to the divider bar.
 
@@ -37,7 +37,7 @@ def banner():
         print(f"{Fore.RED}  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.   .{Fore.WHITE}")
         print(f"{Fore.WHITE}:::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}::::::::.{Fore.LIGHTRED_EX}\{Fore.WHITE}:::")
         print(f"{Fore.RED}'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `.'{Fore.WHITE}")
-        print(random.choice(tag))
+        # print(random.choice(tag))
 
     except KeyboardInterrupt:
         print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')

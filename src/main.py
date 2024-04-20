@@ -40,7 +40,7 @@ import src.modules.loki_keygen as loki_keygen
 import src.modules.loki_discovery as loki_discovery
 import src.modules.loki_encrypt as loki_encrypt
 import src.modules.loki_decrypt as loki_decrypt
-import src.modules.cryptotracer as cryptotracer
+import src.modules.cryptotrace as cryptotrace
 # FORENSICS.
 
 def main_script():
@@ -54,7 +54,7 @@ def main_script():
             section("SECURITY") #################
             command(Fore.RED,    
                 "Torshell | Drop into a Tor sub-shell, or connect to Tor.")
-            command(Fore.RED,    
+            command(Fore.GREEN,    
                 "Pvpn | Connect to a random Proton vpn.")
             command(Fore.RED,    
                 "Ovpn | Connect to a specified open vpn.")
@@ -70,7 +70,7 @@ def main_script():
             section("OSINT") #################
             command(Fore.GREEN, 
                 "Shodan | Pull Shodan information from API.")
-            command(Fore.YELLOW, 
+            command(Fore.RED, 
                 "WiGle | Use an API for SSID/BSSIDs stat, locations, & Bluetooth data.")
             command(Fore.GREEN, 
                 "Numlook | Look up validity, carriers, names of phone numbers globally.")
@@ -78,13 +78,13 @@ def main_script():
                 "Geolock | Shodan & auxiliary API based IP tracing & tracking.")
             command(Fore.RED, 
                 "Bankindex | Search up BIN/IIN, Sort Codes, Cheque details, etc.")
-            command(Fore.RED, 
-                "Mactrace | Type in an MAC address to get the vender or device.")
+            command(Fore.GREEN, 
+                "Mactrace | Type in an MAC address to get the vendor or device.")
             command(Fore.RED, 
                 "Flightinfo | Real-time data; global flights, military status, route, etc.")
             command(Fore.RED, 
                 "Licenseinfo | Get information from a car license plate.")
-            command(Fore.RED, 
+            command(Fore.GREEN, 
                 "Cryptotrace | Transaction information, & crypto-wallet tracing.")
             command(Fore.RED, 
                 "Dischook | Upload or pull information from a Discord server, or webhook.")
@@ -117,9 +117,9 @@ def main_script():
                 "Autodd | Create disc images & snapshots for later analysis, or mount one!")
             command(Fore.RED, 
                 "Exif | Check exif data on a file, or wipe it clean.")
-            command(Fore.RED, 
-                "Geo | Geo-locate an IP, or exif & meta data.")
-            command(Fore.RED, 
+            command(Fore.GREEN, 
+                "Geolock | Geo-locate an IP, or exif & meta data.")
+            command(Fore.GREEN, 
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
             command(Fore.RED, 
                 "Netjack | Crack a capture file using Netjack!")
@@ -173,7 +173,7 @@ def main_script():
                 os._exit(0)
             
             if option == "cryptotrace".lower():
-                cryptotracer.cryptotracer()
+                cryptotrace.cryptotracer()
                 os._exit(0)
         except KeyboardInterrupt:
             print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')
