@@ -54,7 +54,7 @@ Contact info:
 
 ## 🤝 Acknowledgements
 
-- [Fox](https://github.com/1T57H3F0X) | Was Previously Project Manager
+- [Fox](https://github.com/FoxIDK) | Was Previously Project Manager
 - [Tornado](https://github.com/digitalsilicon) | Was Previously QA
 - [Mart](https://github.com/marvhus) | Was Previously Sr Dev
 - [6abd](https://github.com/6abd) (Me) | Was Previously Jr Dev
