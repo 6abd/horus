@@ -1,18 +1,23 @@
 # Project | Horus
-[![6abd - horus](https://img.shields.io/static/v1?label=6abd&message=horus&color=blue&logo=github)](https://github.com/6abd/horus "Go to GitHub repo")
-[![stars - horus](https://img.shields.io/github/stars/6abd/horus?style=social)](https://github.com/6abd/horus)
-[![forks - horus](https://img.shields.io/github/forks/6abd/horus?style=social)](https://github.com/6abd/horus)
-[![Python application](https://github.com/6abd/horus/workflows/Python%20application/badge.svg)](https://github.com/6abd/horus/actions?query=workflow:"Python+application")
-[![GitHub tag](https://img.shields.io/github/tag/6abd/horus?include_prereleases=&sort=semver&color=blue)](https://github.com/6abd/horus/releases/)
-[![License](https://img.shields.io/badge/License-GNU_General_Public_License_v3.0-blue)](#license)
-[![issues - horus](https://img.shields.io/github/issues/6abd/horus)](https://github.com/6abd/horus/issues)
-[![Discord](https://img.shields.io/discord/1227405208108269712)](https://discord.gg/PhkqXAT7Ax)
+
 
 
 <p align="center">
   <img src="https://i.ibb.co/9HvghxG/Screenshot-2024-04-19-at-11-17-49-PM.png"/>
 </p>
+<div align="center">
+  
+[![6abd - horus](https://img.shields.io/static/v1?label=6abd&message=horus&color=blue&logo=github)](https://github.com/6abd/horus "Go to GitHub repo")
+[![GitHub tag](https://img.shields.io/github/tag/6abd/horus?include_prereleases=&sort=semver&color=blue)](https://github.com/6abd/horus/releases/)
+[![Discord](https://img.shields.io/discord/1227405208108269712?style=flat)](https://discord.gg/PhkqXAT7Ax)
+[![stars - horus](https://img.shields.io/github/stars/6abd/horus?style=social)](https://github.com/6abd/horus)
+[![forks - horus](https://img.shields.io/github/forks/6abd/horus?style=social)](https://github.com/6abd/horus)
+[![issues - horus](https://img.shields.io/github/issues/6abd/horus)](https://github.com/6abd/horus/issues)
+[![Python application](https://github.com/6abd/horus/workflows/Python%20application/badge.svg)](https://github.com/6abd/horus/actions?query=workflow:"Python+application")
+[![License](https://img.shields.io/badge/License-GNU_General_Public_License_v3.0-blue)](#license)
 
+
+</div>
 ## 🚀 About Horus
 
 Horus is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
