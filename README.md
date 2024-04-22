@@ -9,11 +9,9 @@
   
 [![6abd - horus](https://img.shields.io/static/v1?label=6abd&message=horus&color=red&logo=github)](https://github.com/6abd/horus "Go to GitHub repo")
 [![GitHub tag](https://img.shields.io/github/tag/6abd/horus?include_prereleases=&sort=semver&color=red)](https://github.com/6abd/horus/releases/)
-[![Discord](https://img.shields.io/discord/1227405208108269712?style=flat&color=red)](https://discord.gg/PhkqXAT7Ax)
 [![stars - horus](https://img.shields.io/github/stars/6abd/horus?style=social&logoColor=red)](https://github.com/6abd/horus)
 [![forks - horus](https://img.shields.io/github/forks/6abd/horus?style=social&logoColor=red)](https://github.com/6abd/horus)
 [![issues - horus](https://img.shields.io/github/issues/6abd/horus?color=red)](https://github.com/6abd/horus/issues)
-[![Python application](https://github.com/6abd/horus/workflows/Python%20application/badge.svg?)](https://github.com/6abd/horus/actions?query=workflow:"Python+application")
 [![License](https://img.shields.io/badge/License-GNU_General_Public_License_v3.0-red)](#license)
 
 
