@@ -28,7 +28,7 @@ Once it is installed, follow these steps:
 1. Clone this repository.
 2. Move to the 'horus' directory. (Make sure it isn't the outermost folder)
 3. Install dependencies using the following command: ```pip install -r requirements.txt```
-4. In the 'sentinel' directory, run ```python3 horus.py```
+4. In the 'horus' directory, run ```python3 horus.py```
 
 ## API Configuration
 To configure the APIs necessary for usage of certain commands, you can either manually enter them, or use the 'apicon' command
