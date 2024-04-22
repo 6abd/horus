@@ -7,12 +7,12 @@
 </p>
 <div align="center">
   
-[![6abd - horus](https://img.shields.io/static/v1?label=6abd&message=horus&color=red&logo=github)](https://github.com/6abd/horus "Go to GitHub repo")
-[![GitHub tag](https://img.shields.io/github/tag/6abd/horus?include_prereleases=&sort=semver&color=red)](https://github.com/6abd/horus/releases/)
-[![stars - horus](https://img.shields.io/github/stars/6abd/horus?style=social&logoColor=red)](https://github.com/6abd/horus)
-[![forks - horus](https://img.shields.io/github/forks/6abd/horus?style=social&logoColor=red)](https://github.com/6abd/horus)
-[![issues - horus](https://img.shields.io/github/issues/6abd/horus?color=red)](https://github.com/6abd/horus/issues)
-[![License](https://img.shields.io/badge/License-GNU_General_Public_License_v3.0-red)](#license)
+[![6abd - horus](https://img.shields.io/static/v1?label=6abd&message=horus&color=crimson&logo=github)](https://github.com/6abd/horus "Go to GitHub repo")
+[![GitHub tag](https://img.shields.io/github/tag/6abd/horus?include_prereleases=&sort=semver&color=crimson)](https://github.com/6abd/horus/releases/)
+[![stars - horus](https://img.shields.io/github/stars/6abd/horus?style=social&logoColor=crimson)](https://github.com/6abd/horus)
+[![forks - horus](https://img.shields.io/github/forks/6abd/horus?style=social&logoColor=crimson)](https://github.com/6abd/horus)
+[![issues - horus](https://img.shields.io/github/issues/6abd/horus?color=crimson)](https://github.com/6abd/horus/issues)
+[![License](https://img.shields.io/badge/License-GNU_General_Public_License_v3.0-crimson)](#license)
 
 
 </div>
