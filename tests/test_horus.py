@@ -1,4 +1,4 @@
-from .. import horus
+from horus import horus
 import os
 import pytest
 
