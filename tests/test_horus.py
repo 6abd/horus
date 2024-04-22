@@ -1,4 +1,4 @@
-import horus
+import horus.horus
 import os
 import pytest
 
