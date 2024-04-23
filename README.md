@@ -37,19 +37,6 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 
 **⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.**
 
-## 🤝 Current Maintainers
-
-- [6abd](https://github.com/6abd) (Me) | Project Lead and Developer
-
-## Contributing
-- If you notice a bug or want to request a feature, make an issue with the appropriate tag
-- If you would like to fix a bug or add a feature yourself, make a PR and I'll take a look
-- If you would like to become a long-term maintainer/contributor, contact me
-- For any other inquiries, you may also contact me
-
-Contact info:
-- Email: digitalizedsnake@gmail.com
-- Discord: maestro.hq or through the [community server](https://discord.gg/PhkqXAT7Ax)
   
 ## Intended Features
 ```  
@@ -64,6 +51,20 @@ Contact info:
   <img src="https://imgtr.ee/images/2024/04/19/5f61a1d7e44fc1dab705a4e52029087c.png"/>
 </p>
 
+## 🤝 Current Maintainers
+
+- [6abd](https://github.com/6abd) (Me) | Project Lead and Developer
+
+
+## 🛠️ Contributing
+- If you notice a bug or want to request a feature, make an issue with the appropriate tag
+- If you would like to fix a bug or add a feature yourself, make a PR and I'll take a look
+- If you would like to become a long-term maintainer/contributor, contact me
+- For any other inquiries, you may also contact me
+
+## 📧 Contact Me
+- Email: digitalizedsnake@gmail.com
+- Discord: maestro.hq or through the [community server](https://discord.gg/PhkqXAT7Ax)
 
 ## 🤝 Acknowledgements
 
