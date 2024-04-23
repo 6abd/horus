@@ -35,7 +35,7 @@ To configure the APIs necessary for usage of certain commands, you can either ma
 
 To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config.json```. Enter your API keys in their corresponding entries.
 
-### ⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.
+**⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.**
 
 ## 💫 Demo
 __*Below is a demonstration of the Cryptotrace feature!*__
