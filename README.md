@@ -37,14 +37,6 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 
 **⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.**
 
-## 💫 Demo
-__*Below is a demonstration of the Cryptotrace feature!*__
-
-![Cryptotrace Demo](https://github.com/6abd/horus/assets/81784387/8e2d1985-a74f-4d19-8fae-0dbe13cb8768)
-
-For this example, I used Snoop Dogg's (or rather, his management's) Ethereum wallet.
-I simply enter the command, then the currency, and paste the address.
-
 ## 🤝 Current Maintainers
 
 - [6abd](https://github.com/6abd) (Me) | Project Lead and Developer
