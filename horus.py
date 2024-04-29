@@ -86,7 +86,7 @@ if args['apicon']: # Runs the numlook program.
             apicon.apicon()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['pvpn']: # Runs the numlook program.
@@ -95,7 +95,7 @@ if args['pvpn']: # Runs the numlook program.
             pvpn.pvpn()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['shodan']: # Runs the numlook program.
@@ -104,7 +104,7 @@ if args['shodan']: # Runs the numlook program.
             shodan.run_shodan()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['numlook']: # Runs the numlook program.
@@ -113,7 +113,7 @@ if args['numlook']: # Runs the numlook program.
             numlook.numlook()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['geolock']: # Runs the numlook program.
@@ -122,7 +122,7 @@ if args['geolock']: # Runs the numlook program.
             geolock.geolock()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['mactrace']: # Runs the numlook program.
@@ -131,7 +131,7 @@ if args['mactrace']: # Runs the numlook program.
             numlook.numlook()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if args['cryptotrace']: # Runs the numlook program.
@@ -140,7 +140,7 @@ if args['cryptotrace']: # Runs the numlook program.
             cryptotrace.cryptotrace()
             os._exit(0)
         except Exception as error:
-            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            print(f"{failed}: {error}\n")
             os._exit(0)
 
 if __name__ == '__main__':
@@ -148,7 +148,7 @@ if __name__ == '__main__':
         banner.banner()
         main.main_script()
     except KeyboardInterrupt:
-        print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')
+        print(f'\n{notice} You interrupted the program.{Fore.WHITE}')
         try:
             sys.exit(0)
         except SystemExit:

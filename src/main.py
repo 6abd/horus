@@ -50,7 +50,7 @@ def main_script():
             def section(text):
                 print(f"{prompt} {Fore.LIGHTRED_EX}{text}{Fore.WHITE}")
             print("\n")
-            print(f"                           -=-=-=-=-COMMANDS-=-=-=-=-")
+            print(f"{notice}                           -=-=-=-=-COMMANDS-=-=-=-=-{Fore.WHITE}")
             section("SECURITY") #################
             command(Fore.RED,    
                 "Torshell | Drop into a Tor sub-shell, or connect to Tor.")
@@ -97,7 +97,7 @@ def main_script():
                 "Casegenerate | Build case files from skeleton docs for later population.")
             command(Fore.RED, 
                 "Casesecure | Use Loki to secure a case-file with it's associated Loki key!")
-            print("         (this also prints out the check_sum & hash for validation)")
+            print(f"{prompt}         (this also prints out the check_sum & hash for validation){Fore.WHITE}")
             command(Fore.RED, 
                 "Casedelete | Delete a case from the system, & it's associated Loki key.")
             section("SDB") ###########################
