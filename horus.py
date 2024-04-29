@@ -24,6 +24,21 @@ import src.modules.loki_decrypt as loki_decrypt
 import src.modules.loki_discovery as loki_discovery
 import src.modules.loki_encrypt as loki_encrypt
 import src.modules.loki_keygen as loki_keygen
+
+# Config (Prints) for Horus.py
+text = f"{Fore.WHITE}"
+dividers = f"{Fore.LIGHTRED_EX}"
+success = f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]"
+successfully = f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]"
+failed = f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]"
+prompt = f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]"
+notice = f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]"
+question = f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]"
+alert = f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]"
+exited = f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]"
+disconnected = f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]"
+command = f"\n[{Fore.YELLOW}>_{Fore.WHITE}]:"
+
 # FORENSICS.
 
 # Clears screen
