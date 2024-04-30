@@ -80,7 +80,7 @@ class Capturing(list):
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
         
-if args['apicon']: # Runs the numlook program.
+if args['apicon']: # Runs the apicon program.
     while True:
         try:
             apicon.apicon()
@@ -89,7 +89,7 @@ if args['apicon']: # Runs the numlook program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['pvpn']: # Runs the numlook program.
+if args['pvpn']: # Runs the pvpn program.
     while True:
         try:
             pvpn.pvpn()
@@ -98,7 +98,7 @@ if args['pvpn']: # Runs the numlook program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['shodan']: # Runs the numlook program.
+if args['shodan']: # Runs the shodan program.
     while True:
         try:
             shodan.run_shodan()
@@ -116,7 +116,7 @@ if args['numlook']: # Runs the numlook program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['geolock']: # Runs the numlook program.
+if args['geolock']: # Runs the geolock program.
     while True:
         try:
             geolock.geolock()
@@ -125,7 +125,7 @@ if args['geolock']: # Runs the numlook program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['mactrace']: # Runs the numlook program.
+if args['mactrace']: # Runs the mactrace program.
     while True:
         try:
             numlook.numlook()
@@ -134,7 +134,7 @@ if args['mactrace']: # Runs the numlook program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['cryptotrace']: # Runs the numlook program.
+if args['cryptotrace']: # Runs the cryptotrace program.
     while True:
         try:
             cryptotrace.cryptotrace()
