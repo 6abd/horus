@@ -56,4 +56,4 @@ def mactrace():
 # Run module_name module.
 
 if __name__ == '__main__':
-    macaddr()
+    mactrace()
