@@ -26,9 +26,9 @@ To get started with this project, you will need Python installed on your device.
 Once it is installed, follow these steps:
 
 1. Clone this repository.
-2. Move to the 'horus' directory. (Make sure it isn't the outermost folder)
+2. `cd` to the 'horus' directory. (Make sure it isn't the outermost folder)
 3. Install dependencies using the following command: ```pip install -r requirements.txt```
-4. In the 'horus' directory, run ```python3 horus.py```
+4. In the 'horus' directory, run ```python3 horus.py``` on Linux/MacOS, or ```py horus.py``` on Windows
 
 *Note: protonvpn-cli is a requirement for the 'pvpn' command*
 
