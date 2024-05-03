@@ -30,6 +30,8 @@ Once it is installed, follow these steps:
 3. Install dependencies using the following command: ```pip install -r requirements.txt```
 4. In the 'horus' directory, run ```python3 horus.py```
 
+*Note: protonvpn-cli is a requirement for the 'pvpn' command*
+
 ## API Configuration
 To configure the APIs necessary for usage of certain commands, you can either manually enter them, or use the 'apicon' command
 
@@ -51,6 +53,7 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
   <img src="https://imgtr.ee/images/2024/04/19/5f61a1d7e44fc1dab705a4e52029087c.png"/>
 </p>
 
+*On Shodan: Shodan is a paid API, so in order for your API to work you need to subscribe to them. A lot of its feature's location-related functionality is available in 'geolock', but more detailed features require that API.*
 ## 🤝 Current Maintainers
 
 - [6abd](https://github.com/6abd) (Me) | Project Lead and Developer

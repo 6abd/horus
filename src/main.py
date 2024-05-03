@@ -4,6 +4,27 @@ import sys # System stuff.
 import os # Operating System functions.
 from colorama import Fore # For text colour.
 
+# Modules
+from . import apicon
+# SECURITY.
+# ENUMERATION.
+# OSINT.
+import src.modules.shodan as shodan
+import src.modules.numlook as numlook
+import src.modules.geolock as geolock
+# CASE-GEN.
+# SDB.
+# Loki.
+import src.modules.loki_keygen as loki_keygen
+import src.modules.loki_discovery as loki_discovery
+import src.modules.loki_encrypt as loki_encrypt
+import src.modules.loki_decrypt as loki_decrypt
+import src.modules.cryptotrace as cryptotrace
+import src.modules.vt as vt
+import src.modules.mactrace as mactrace
+import src.modules.pvpn as pvpn
+# FORENSICS.
+
 
 # Config (Prints).
 text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
@@ -25,23 +46,7 @@ os.system("clear")
 # Hide tracebacks - change to 1 for dev mode.
 sys.tracebacklimit = 0
 
-# Modules
-from . import apicon
-# SECURITY.
-# ENUMERATION.
-# OSINT.
-import src.modules.shodan as shodan
-import src.modules.numlook as numlook
-import src.modules.geolock as geolock
-# CASE-GEN.
-# SDB.
-# Loki.
-import src.modules.loki_keygen as loki_keygen
-import src.modules.loki_discovery as loki_discovery
-import src.modules.loki_encrypt as loki_encrypt
-import src.modules.loki_decrypt as loki_decrypt
-import src.modules.cryptotrace as cryptotrace
-# FORENSICS.
+
 
 def main_script():
         try:
@@ -129,26 +134,37 @@ def main_script():
             # SECURITY.
             # ENUMERATION.
             # OSINT.
-            if option == "shodan".lower():
+            if option.lower() == "shodan":
                 shodan.run_shodan()
                 os._exit(0)
 
-            if option == "numlook".lower():
+            if option.lower() == "numlook":
                 numlook.numlook()
                 os._exit(0)
 
-            if option == "geolock".lower():
+            if option.lower() == "geolock":
                 geolock.geolock()
                 os._exit(0)
+              
+            if option.lower() == "cryptotrace":
+              cryptotrace.cryptotrace()
+              os._exit(0)
+
+            if option.lower() == "vt":
+              vt.vt()
+              os._exit(0)
+
+            if option.lower() == "pvpn":
+              pvpn.pvpn()
+              os._exit(0)
+
+            if option.lower() == "mactrace":
+              mactrace.mactrace()
+              os._exit(0)
             # CASE-GEN.
             # SDB.
             # Loki.
             # FORENSICS.
-            # API config.
-            if option == "apicon" or option == "Apicon":
-                apicon.apicon()
-                os._exit(0)
-
 
             # Loki.
             if option == "lokigen".lower():
@@ -172,9 +188,7 @@ def main_script():
                 apicon.apicon()
                 os._exit(0)
             
-            if option == "cryptotrace".lower():
-                cryptotrace.cryptotracer()
-                os._exit(0)
+            
         except KeyboardInterrupt:
             print(f'\n{Fore.YELLOW}You interrupted the program.{Fore.WHITE}')
             try:

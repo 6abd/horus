@@ -17,6 +17,8 @@ import src.modules.shodan as shodan
 import src.modules.numlook as numlook
 import src.modules.geolock as geolock
 import src.modules.cryptotrace as cryptotrace
+import src.modules.mactrace as mactrace
+import src.modules.vt as vt
 # CASE-GEN.
 # SDB.
 # Loki.
@@ -46,6 +48,7 @@ ap.add_argument('-pvpn', help='\n', action="store_true")
 ap.add_argument('-shodan', help='Call on Loki to encrypt the home directory and pull the encryption key.\n', action="store_true")
 #ap.add_argument('-wiggle', help='Use an API for SSID/BSSIDs stat, locations, & Bluetooth data.\n', action="store_true")
 ap.add_argument('-numlook', help='Look up validity, carriers, names of phone numbers globally.\n', action="store_true")
+ap.add_argument('-vt', help='Connect to the virus-total API to scan, or screen files, links, etc.\n', action="store_true")
 ap.add_argument('-geolock', help='Shodan & auxiliary API based IP tracing & tracking.\n', action="store_true")
 #ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque details, etc.\n', action="store_true")
 ap.add_argument('-mactrace', help='Type in an MAC address to get the vendor or device.', action="store_true")
@@ -128,7 +131,7 @@ if args['geolock']: # Runs the geolock program.
 if args['mactrace']: # Runs the mactrace program.
     while True:
         try:
-            numlook.numlook()
+            mactrace.mactrace()
             os._exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
@@ -142,6 +145,15 @@ if args['cryptotrace']: # Runs the cryptotrace program.
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
+          
+if args['vt']:
+  while True:
+    try:
+      vt.vt()
+      os._exit(0)
+    except Exception as error:
+      print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+      os._exit(0)
 
 if __name__ == '__main__':
     try:

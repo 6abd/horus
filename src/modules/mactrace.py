@@ -33,7 +33,7 @@ sys.tracebacklimit = 0
 #    #{api_name} = data["{api_name}"]
 
 # Program.
-def macaddr():
+def mactrace():
    addr = input("Enter a MAC address: ")
 
    r = requests.get(f"https://www.macvendorlookup.com/oui.php?mac={addr}")
@@ -46,7 +46,7 @@ def macaddr():
        else:
            print(f"Company: {results[0]['company']}")
            print(f"Country: {results[0]['country']}")
-           print(f"Address: {results[0]['addressL1']}, {results[0]['addressL3']}")
+           print(f"Address (L2): {results[0]['addressL2']}")
    elif r.status_code == 204:
        print(f"{failed} Address not found in database!")
    elif r.status_code == 404:

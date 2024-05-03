@@ -34,20 +34,8 @@ with open('./src/modules/var/pipes/api_config.json') as f:
 # Program.
 def geolock():
     # Get API and base.
-    direct_url = ("https://www.shodan.io/")
-    extend_url = ("host/")
-    key_raw = ("/raw?key=")
     try:
-        # Additional API information.
-        SHODAN_API_KEY = (f"{key}")
-        api = shodan.Shodan(SHODAN_API_KEY)
-        print("\nShodan API:")
         host_ip = input(f"{question} IP: ")
-        host = api.host(f'{host_ip}')
-        # Print information from API.
-        print(f"{prompt}","Location: {}, {}".format(host.get('country_name', 'n/a'), host.get('city', 'n/a')))
-        print(f"{prompt}","Long/Lat: {} | {}".format(host.get('longitude','n/a'), host.get('latitude','n/a'))) # Get Lat/Long.
-        print("\nReserve API:")    
         # Reserve API and base.
         reserve_direct_url = ("http://ip-api.com/")
         reserve_extend_url = ("json/")
@@ -55,16 +43,12 @@ def geolock():
         r_dict = r.json()
         # Print information from API.
         print(f"{prompt}","Location:", r_dict['city'], "|", r_dict['zip'])
-    except shodan.exception.APIError:
-        print(f"\n{alert}Shodan API failed")
-        print("\nReserve API:")    
-        # Reserve API and base.
-        reserve_direct_url = ("http://ip-api.com/")
-        reserve_extend_url = ("json/")
-        r = requests.get(f'{reserve_direct_url}{reserve_extend_url}{host_ip}')
-        r_dict = r.json()
-        # Print information from API.
-        print(f"{prompt}","Location:", r_dict['city'], "|", r_dict['zip'])
+        print(f"{prompt}","Coordinates (Latitude | Longitude):", r_dict['lat'], "|", r_dict['lon'])
+        print(f"{prompt}", "ISP:", r_dict['isp'])
+
+    except Exception as error:
+        print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+        os._exit(0)
 
 # Run geolock module.
 if __name__ == '__main__':
