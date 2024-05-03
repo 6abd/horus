@@ -74,7 +74,6 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 - [Fox](https://github.com/FoxIDK) | Was Previously Project Manager
 - [Tornado](https://github.com/digitalsilicon) | Was Previously QA
 - [Mart](https://github.com/marvhus) | Was Previously Sr Dev
-- [6abd](https://github.com/6abd) (Me) | Was Previously Jr Dev
 - [Mu](https://github.com/IamMU) | Was Previously Jr Dev
 
 *Some code used can be attributed to [Fox](https://github.com/FoxIDK) and [Askerdyne Ltd.](https://askerdyne.com/), specifically the 'Loki' encryption toolset.*
