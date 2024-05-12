@@ -78,4 +78,6 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 
 *Some code used can be attributed to [Fox](https://github.com/FoxIDK) and [Askerdyne Ltd.](https://askerdyne.com/), specifically the 'Loki' encryption toolset.*
 
+*Some `.github` files were made by [Jesse Squires](https://github.com/jessesquires)*
+
 <a href="https://www.producthunt.com/posts/horus?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-horus" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=453469&theme=light" alt="Horus - An&#0032;OSINT&#0032;&#0047;&#0032;digital&#0032;forensics&#0032;tool&#0032;built&#0032;in&#0032;Python | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
