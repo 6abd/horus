@@ -19,7 +19,7 @@
 
 ## :book: Code of Conduct
 
-Please review our [Code of Conduct](https://github.com/6abd/horus/.github/CODE_OF_CONDUCT.md). It is in effect at all times. We expect it to be honored by everyone who contributes to this project. 
+Please review our [Code of Conduct](https://github.com/6abd/horus/blob/main/.github/CODE_OF_CONDUCT.md). It is in effect at all times. We expect it to be honored by everyone who contributes to this project. 
 
 ## :inbox_tray: Opening an Issue
 
@@ -27,7 +27,7 @@ Before [creating an issue](https://help.github.com/en/github/managing-your-work-
 
 ### :lock: Reporting Security Issues
 
-Review our [Security Policy](https://github.com/6abd/horus/.github/SECURITY.md). **Do not** file a public issue for security vulnerabilities.
+Review our [Security Policy](https://github.com/6abd/horus/blob/main/.github/SECURITY.md). **Do not** file a public issue for security vulnerabilities.
 
 ### :beetle: Bug Reports and Other Issues
 
