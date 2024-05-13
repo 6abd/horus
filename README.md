@@ -17,6 +17,18 @@
 
 </div>
 
+# Table of Contents
+
+* [🚀 About Horus](#-about-horus)
+* [⚡ Installation and Usage Instructions](#-installation-and-usage-instructions)
+* [⚙️ API Configuration](#-api-configuration)
+* [🔮 Intended Features](#-intended-features)
+* [🤝 Current Maintainers](#-current-maintainers)
+* [🛠️ Contributing](#%EF%B8%8F-contributing)
+* [📧 Contact Me](#-contact-me)
+* [🤝 Acknowledgements](#-acknowledgements)
+
+
 ## 🚀 About Horus
 
 Horus is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
