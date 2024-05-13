@@ -21,7 +21,7 @@
 
 * [🚀 About Horus](#-about-horus)
 * [⚡ Installation and Usage Instructions](#-installation-and-usage-instructions)
-* [⚙️ API Configuration](#-api-configuration)
+* [⚙️ API Configuration](#%EF%B8%8F-api-configuration)
 * [🔮 Intended Features](#-intended-features)
 * [🤝 Current Maintainers](#-current-maintainers)
 * [🛠️ Contributing](#%EF%B8%8F-contributing)
