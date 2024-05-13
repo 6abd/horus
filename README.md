@@ -33,7 +33,7 @@
 
 Horus is an all-in-one encompassing tool for investigations assistance, from API leveraging to compiling data too. Its your pre-ops buddy! 
 
-## Installation and Usage Instructions
+## ⚡ Installation and Usage Instructions
 To get started with this project, you will need Python installed on your device.
 Once it is installed, follow these steps:
 
@@ -44,7 +44,7 @@ Once it is installed, follow these steps:
 
 *Note: protonvpn-cli is a requirement for the 'pvpn' command*
 
-## API Configuration
+## ⚙️ API Configuration
 To configure the APIs necessary for usage of certain commands, you can either manually enter them, or use the 'apicon' command
 
 To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config.json```. Enter your API keys in their corresponding entries.
@@ -52,7 +52,7 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 **⚠️ Warning: If you are contributing to this repository or are testing it through a public fork, make sure to remove your API keys from the JSON file before pushing changes.**
 
   
-## Intended Features
+## 🔮 Intended Features
 ```  
 🟢 = Fully implemented or more than 80% done
 
