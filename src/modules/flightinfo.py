@@ -33,7 +33,7 @@ with open('./src/modules/var/pipes/api_config.json') as f:
 
 # Program.
 def flightinfo():
-    print(f'{notice} How would you like to filter flight data? (number, date, dep_iata, arr_iata or status) ')
+    print(f'{notice} How would you like to filter flight data? (icao24, number, date, dep_iata, arr_iata or status) ')
     option = input(f'{command}').lower()
 
     if option == 'number':
@@ -139,6 +139,20 @@ def flightinfo():
             print(f"Arrival Terminal/Gate: {data[i]['arrival']['terminal']}{data[i]['arrival']['gate']}")
             print(f"Estimated Arrival: {data[i]['arrival']['estimated']}")
             print(f"Actual Arrival: {data[i]['arrival']['actual']}")
+            print("-------------------------------------------------------------------")
+
+    if option == 'icao24':
+        icao24 = input(f"{question} Enter a plane icao24: ")
+        begin = input(f"{question} Enter a begin Unix timestamp for the flights interval: ")
+        end = input(f"{question} Enter an end Unix timestamp for the flights interval: ")
+        data = requests.get(f"https://opensky-network.org/api/flights/aircraft?icao24={icao24}&begin={begin}&end={end}").json()
+        for i in range(0,len(data)):
+            print(f"Aircraft Callsign: {data[i]['callsign']}")
+            print(f"Departure Airport (Estimated): {data[i]['estDepartureAirport']}")
+            print(f"Arrival Airport (Estimated): {data[i]['estArrivalAirport']}")
+            print(f"Arrival Airport (Estimated): {data[i]['estArrivalAirport']}")
+            print(f"First Seen: {data[i]['firstSeen']}")
+            print(f"Last Seen: {data[i]['lastSeen']}")
             print("-------------------------------------------------------------------")
 
 # Run module_name module.
