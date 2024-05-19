@@ -19,6 +19,8 @@ import src.modules.geolock as geolock
 import src.modules.cryptotrace as cryptotrace
 import src.modules.mactrace as mactrace
 import src.modules.vt as vt
+import src.modules.flightinfo as flightinfo
+import src.modules.wigle as wigle
 # CASE-GEN.
 # SDB.
 # Loki.
@@ -46,13 +48,13 @@ ap.add_argument('-pvpn', help='\n', action="store_true")
 #ap.add_argument('-Onionshare', help='\n', action="store_true")
 # OSINT.
 ap.add_argument('-shodan', help='Call on Loki to encrypt the home directory and pull the encryption key.\n', action="store_true")
-#ap.add_argument('-wiggle', help='Use an API for SSID/BSSIDs stat, locations, & Bluetooth data.\n', action="store_true")
+ap.add_argument('-wigle', help='Use an API for SSID/BSSIDs stat, locations, & Bluetooth data.\n', action="store_true")
 ap.add_argument('-numlook', help='Look up validity, carriers, names of phone numbers globally.\n', action="store_true")
 ap.add_argument('-vt', help='Connect to the virus-total API to scan, or screen files, links, etc.\n', action="store_true")
 ap.add_argument('-geolock', help='Shodan & auxiliary API based IP tracing & tracking.\n', action="store_true")
 #ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque details, etc.\n', action="store_true")
 ap.add_argument('-mactrace', help='Type in an MAC address to get the vendor or device.', action="store_true")
-#ap.add_argument('-Flightinfo', help='\n', action="store_true")
+ap.add_argument('-flightinfo', help='\n', action="store_true")
 #ap.add_argument('-Licenseinfo', help='\n', action="store_true")
 ap.add_argument('-cryptotrace', help='Transaction information, & crypto-wallet tracing.', action="store_true")
 #ap.add_argument('-Dischook', help='\n', action="store_true")
@@ -70,7 +72,7 @@ ap.add_argument('-cryptotrace', help='Transaction information, & crypto-wallet t
 args = vars(parser.parse_args())
 
 
-from io import StringIO 
+from io import StringIO
 import sys
 
 class Capturing(list):
@@ -82,7 +84,7 @@ class Capturing(list):
         self.extend(self._stringio.getvalue().splitlines())
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
-        
+
 if args['apicon']: # Runs the apicon program.
     while True:
         try:
@@ -145,7 +147,7 @@ if args['cryptotrace']: # Runs the cryptotrace program.
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
-          
+
 if args['vt']:
   while True:
     try:
@@ -154,6 +156,24 @@ if args['vt']:
     except Exception as error:
       print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
       os._exit(0)
+
+if args['flightinfo']: # Runs the mactrace program.
+    while True:
+        try:
+            flightinfo.flightinfo()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['wigle']: # Runs the mactrace program.
+    while True:
+        try:
+            wigle.wigle()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
 
 if __name__ == '__main__':
     try:
