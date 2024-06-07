@@ -7,9 +7,10 @@ from colorama import Fore # For text colour.
 import json
 
 # Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
-success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
+response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
 prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
@@ -34,7 +35,7 @@ sys.tracebacklimit = 0
 
 # Program.
 def mactrace():
-   addr = input("Enter a MAC address: ")
+   addr = input(f"{question} Enter a MAC address: ")
 
    r = requests.get(f"https://www.macvendorlookup.com/oui.php?mac={addr}")
 
@@ -44,9 +45,10 @@ def mactrace():
        except json.decoder.JSONDecodeError:
            print(f"{failed} Address not found in database!")
        else:
-           print(f"Company: {results[0]['company']}")
-           print(f"Country: {results[0]['country']}")
-           print(f"Address (L2): {results[0]['addressL2']}")
+           print(f"{response} Company: {results[0]['company']}")
+           print(f"{response} Country: {results[0]['country']}")
+           print(f"{response} Address (L2): {results[0]['addressL2']}")
+           print(success)
    elif r.status_code == 204:
        print(f"{failed} Address not found in database!")
    elif r.status_code == 404:

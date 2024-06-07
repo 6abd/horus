@@ -5,8 +5,8 @@ import json
 from colorama import Fore # For text colour.
 
 # Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
 success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
@@ -31,11 +31,14 @@ def apicon():
         print(f"\n{notice} If you don't have an API key, just press ENTER.")
         shodan = input(f"\n{question} Shodan API key: ")
         numlook = input(f"{question} Numlookup API key: ")
-        bankindex_i = input(f"{question} iBAN API key: ")
-        bankindex_ii = ("n/a")
-        # bankindex_ii = input(f"{question} bankindex_ii API key: ")
+        bankindex_i = input(f"{question} Neutrino API User ID: ")
+        bankindex_ii = input(f"{question} Neutrino API key: ")
         virustotal = input(f"{question} VirusTotal API key: ")
-        WiGle = input(f"{question} WiGle API key: ")
+        wigle_name = input(f"{question} WiGle API name: ")
+        wigle_token = input(f"{question} WiGle API token: ")
+        aviationstack = input(f"{question} Aviationstack API key: ")
+        etherscan = input(f"{question} Etherscan API key: ")
+        bscscan = input(f"{question} Bscscan API key: ")
         # Don't touch this, it works for some reason.
         api_keys = {
             "update": "verified",
@@ -44,7 +47,11 @@ def apicon():
             "bankindex_i": bankindex_i,
             "bankindex_ii": bankindex_ii,
             "vt": virustotal,
-            "WiGle": WiGle,
+            "etherscan": etherscan,
+            "bscscan": bscscan,
+            "aviationstack": aviationstack,
+            "wigle_name": wigle_name,
+            "wigle_token": wigle_token
         }
         # open, not save? outputs to apicon.json and moval to var/pipes file.
         with open("apicon.json", "w") as outfile:

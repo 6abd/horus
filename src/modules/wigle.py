@@ -8,7 +8,8 @@ from colorama import Fore # For text colour.
 # Config (Prints).
 text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
 dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
+output = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
 prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
@@ -42,34 +43,34 @@ def wigle():
         response = requests.get(f"https://api.wigle.net/api/v2/bluetooth/detail?netid={netid}", auth=(api_name,api_token)).json()
         for i in range(0, len(response)):
             data = response[i]
-            print(f"Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
-            print(f"QoS (0-7): {data['qos']}")
-            print(f"First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
-            print(f"Device Name: {data['name']}")
-            print(f"Country: {data['country']}")
-            print(f"Region: {data['region']}")
-            print(f"City: {data['city']}")
-            print(f"Address: {data['housenumber']} {data['road']}")
-            print(f"Postal Code: {data['postalcode']}")
+            print(f"{output} Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
+            print(f"{output} QoS (0-7): {data['qos']}")
+            print(f"{output} First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
+            print(f"{output} Device Name: {data['name']}")
+            print(f"{output} Country: {data['country']}")
+            print(f"{output} Region: {data['region']}")
+            print(f"{output} City: {data['city']}")
+            print(f"{output} Address: {data['housenumber']} {data['road']}")
+            print(f"{output} Postal Code: {data['postalcode']}")
             print("-------------------------------------------------------------------")
-
+        print(success)
 
     if option == 'wifi':
         netid = input(f"{question} Enter the WiFi Network BSSID: ")
         response = requests.get(f"https://api.wigle.net/api/v2/network/detail?netid={netid}", auth=(api_name,api_token)).json()
         for i in range(0, len(response)):
             data = response[i]
-            print(f"Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
-            print(f"QoS (0-7): {data['qos']}")
-            print(f"First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
-            print(f"Device Name: {data['name']}")
-            print(f"Country: {data['country']}")
-            print(f"Region: {data['region']}")
-            print(f"City: {data['city']}")
-            print(f"Address: {data['housenumber']} {data['road']}")
-            print(f"Postal Code: {data['postalcode']}")
+            print(f"{output} Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
+            print(f"{output} QoS (0-7): {data['qos']}")
+            print(f"{output} First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
+            print(f"{output} Device Name: {data['name']}")
+            print(f"{output} Country: {data['country']}")
+            print(f"{output} Region: {data['region']}")
+            print(f"{output} City: {data['city']}")
+            print(f"{output} Address: {data['housenumber']} {data['road']}")
+            print(f"{output} Postal Code: {data['postalcode']}")
             print("-------------------------------------------------------------------")
-
+        print(success)
 # Run module_name module.
 if __name__ == '__main__':
     wigle()

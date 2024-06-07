@@ -7,9 +7,10 @@ import requests
 from colorama import Fore # For text colour.
 
 # Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
-success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
+response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
 prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
@@ -42,10 +43,10 @@ def geolock():
         r = requests.get(f'{reserve_direct_url}{reserve_extend_url}{host_ip}')
         r_dict = r.json()
         # Print information from API.
-        print(f"{prompt}","Location:", r_dict['city'], "|", r_dict['zip'])
-        print(f"{prompt}","Coordinates (Latitude | Longitude):", r_dict['lat'], "|", r_dict['lon'])
-        print(f"{prompt}", "ISP:", r_dict['isp'])
-
+        print(f"{response}","Location:", r_dict['city'], "|", r_dict['zip'])
+        print(f"{response}","Coordinates (Latitude | Longitude):", r_dict['lat'], "|", r_dict['lon'])
+        print(f"{response}", "ISP:", r_dict['isp'])
+        print(success)
     except Exception as error:
         print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
         os._exit(0)

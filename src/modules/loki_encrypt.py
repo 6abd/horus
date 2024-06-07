@@ -5,9 +5,10 @@ import os # Operating System functions.
 from colorama import Fore # For text colour.
 
 # Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side 
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side 
-success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
+dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
+response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
 prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.

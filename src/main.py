@@ -27,6 +27,7 @@ import src.modules.mactrace as mactrace
 import src.modules.pvpn as pvpn
 import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
+import src.modules.bankindex as bankindex
 # FORENSICS.
 
 
@@ -172,6 +173,10 @@ def main_script():
 
             if option.lower() == "wigle":
                 wigle.wigle()
+                os._exit(0)
+
+            if option.lower() == "bankindex":
+                bankindex.bankindex()
                 os._exit(0)
             # CASE-GEN.
             # SDB.

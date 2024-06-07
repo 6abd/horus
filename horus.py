@@ -21,6 +21,7 @@ import src.modules.mactrace as mactrace
 import src.modules.vt as vt
 import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
+import src.modules.bankindex as bankindex
 # CASE-GEN.
 # SDB.
 # Loki.
@@ -52,7 +53,7 @@ ap.add_argument('-wigle', help='Use an API for SSID/BSSIDs stat, locations, & Bl
 ap.add_argument('-numlook', help='Look up validity, carriers, names of phone numbers globally.\n', action="store_true")
 ap.add_argument('-vt', help='Connect to the virus-total API to scan, or screen files, links, etc.\n', action="store_true")
 ap.add_argument('-geolock', help='Shodan & auxiliary API based IP tracing & tracking.\n', action="store_true")
-#ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque details, etc.\n', action="store_true")
+ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque details, etc.\n', action="store_true")
 ap.add_argument('-mactrace', help='Type in an MAC address to get the vendor or device.', action="store_true")
 ap.add_argument('-flightinfo', help='\n', action="store_true")
 #ap.add_argument('-Licenseinfo', help='\n', action="store_true")
@@ -170,6 +171,15 @@ if args['wigle']: # Runs the mactrace program.
     while True:
         try:
             wigle.wigle()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['bankindex']: # Runs the mactrace program.
+    while True:
+        try:
+            bankindex.bankindex()
             os._exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")

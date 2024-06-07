@@ -8,7 +8,8 @@ from colorama import Fore # For text colour.
 # Config (Prints).
 text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
 dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}]") # Success output.
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
+response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
 failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
 prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
@@ -53,13 +54,13 @@ def cryptotrace():
 
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0,len(transaction_info)):
-            print(f"Transaction Hash: {transaction_info['hash']}")
-            print(f"Sender: {address}")
-            print(f"Recipient: {transaction_info['out'][i]['addr']}")
-            print(f"Value: {transaction_info['out'][i]['value']/100000000} BTC")
-            print(f"Unix Timestamp: {transaction_info['time']}")
+            print(f"{response} Transaction Hash: {transaction_info['hash']}")
+            print(f"{response} Sender: {address}")
+            print(f"{response} Recipient: {transaction_info['out'][i]['addr']}")
+            print(f"{response} Value: {transaction_info['out'][i]['value']/100000000} BTC")
+            print(f"{response} Unix Timestamp: {transaction_info['time']}")
             print("-------------------------------------------------------------------")
-
+        print(success)
     # Ethereum
     elif option == "ethereum":
         # Gets balance through API, divides by 1e18 because the API data is the balance multiplied by that number.
@@ -72,14 +73,14 @@ def cryptotrace():
 
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0, len(transaction_info)):
-            print(f"Block Number: {transaction_info[i]['blockNumber']}")
-            print(f"Transaction Hash: {transaction_info[i]['hash']}")
-            print(f"Value: {int(transaction_info[i]['value'])/1000000000000000000} ETH")
-            print(f"Sender: {transaction_info[i]['from']}")
-            print(f"Recipient: {transaction_info[i]['to']}")
-            print(f"Unix Timestamp: {transaction_info[i]['timeStamp']}")
+            print(f"{response} Block Number: {transaction_info[i]['blockNumber']}")
+            print(f"{response} Transaction Hash: {transaction_info[i]['hash']}")
+            print(f"{response} Value: {int(transaction_info[i]['value'])/1000000000000000000} ETH")
+            print(f"{response} Sender: {transaction_info[i]['from']}")
+            print(f"{response} Recipient: {transaction_info[i]['to']}")
+            print(f"{response} Unix Timestamp: {transaction_info[i]['timeStamp']}")
             print("-------------------------------------------------------------------")
-
+        print(success)
     elif option == "binance":
         # Gets balance through API, divides by 1e18 because the API data is the balance multiplied by that number.
         balance = int(requests.get(f"https://api.bscscan.com/api?module=account&action=balance&address={address}&apikey={key2}").json()['result'])/1000000000000000000
@@ -91,14 +92,14 @@ def cryptotrace():
 
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0, len(transaction_info)):
-            print(f"Block Number: {transaction_info[i]['blockNumber']}")
-            print(f"Transaction Hash: {transaction_info[i]['hash']}")
-            print(f"Value: {int(transaction_info[i]['value'])/1000000000000000000} BNB")
-            print(f"Sender: {transaction_info[i]['from']}")
-            print(f"Recipient: {transaction_info[i]['to']}")
-            print(f"Unix Timestamp: {transaction_info[i]['timeStamp']}")
+            print(f"{response} Block Number: {transaction_info[i]['blockNumber']}")
+            print(f"{response} Transaction Hash: {transaction_info[i]['hash']}")
+            print(f"{response} Value: {int(transaction_info[i]['value'])/1000000000000000000} BNB")
+            print(f"{response} Sender: {transaction_info[i]['from']}")
+            print(f"{response} Recipient: {transaction_info[i]['to']}")
+            print(f"{response} Unix Timestamp: {transaction_info[i]['timeStamp']}")
             print("-------------------------------------------------------------------")
-
+        print(success)
 # Run module_name module.
 if __name__ == '__main__':
     cryptotrace()
