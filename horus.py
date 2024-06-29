@@ -22,6 +22,8 @@ import src.modules.vt as vt
 import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
 import src.modules.bankindex as bankindex
+import src.modules.exif as exif
+import src.modules.ytd as ytd
 # CASE-GEN.
 # SDB.
 # Loki.
@@ -56,10 +58,11 @@ ap.add_argument('-geolock', help='Shodan & auxiliary API based IP tracing & trac
 ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque details, etc.\n', action="store_true")
 ap.add_argument('-mactrace', help='Type in an MAC address to get the vendor or device.', action="store_true")
 ap.add_argument('-flightinfo', help='\n', action="store_true")
+ap.add_argument('-exif', help='Check exif data on a file, or wipe it clean.\n', action="store_true")
 #ap.add_argument('-Licenseinfo', help='\n', action="store_true")
 ap.add_argument('-cryptotrace', help='Transaction information, & crypto-wallet tracing.', action="store_true")
 #ap.add_argument('-Dischook', help='\n', action="store_true")
-#ap.add_argument('-Ytd', help='\n', action="store_true")
+ap.add_argument('-ytd', help='\n', action="store_true")
 #ap.add_argument('-Leverage', help='\n', action="store_true")
 # CASE-GEN.
 #ap.add_argument('-Casegenerate', help='\n', action="store_true")
@@ -180,6 +183,24 @@ if args['bankindex']: # Runs the mactrace program.
     while True:
         try:
             bankindex.bankindex()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['exif']: # Runs the mactrace program.
+    while True:
+        try:
+            exif.exif()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['ytd']: # Runs the mactrace program.
+    while True:
+        try:
+            ytd.ytd()
             os._exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")

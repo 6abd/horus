@@ -28,6 +28,8 @@ import src.modules.pvpn as pvpn
 import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
 import src.modules.bankindex as bankindex
+import src.modules.exif as exif
+import src.modules.ytd as ytd
 # FORENSICS.
 
 
@@ -86,7 +88,7 @@ def main_script():
                 "Numlook | Look up validity, carriers, names of phone numbers globally.")
             command(Fore.GREEN,
                 "Geolock | Shodan & auxiliary API based IP tracing & tracking.")
-            command(Fore.RED,
+            command(Fore.GREEN,
                 "Bankindex | Search up BIN/IIN, Sort Codes, Cheque details, etc.")
             command(Fore.GREEN,
                 "Mactrace | Type in an MAC address to get the vendor or device.")
@@ -98,7 +100,7 @@ def main_script():
                 "Cryptotrace | Transaction information, & crypto-wallet tracing.")
             command(Fore.RED,
                 "Dischook | Upload or pull information from a Discord server, or webhook.")
-            command(Fore.RED,
+            command(Fore.GREEN,
                 "Ytd | Download Youtube videos, in crystal clear format.")
             command(Fore.RED,
                 "Leverage | You can leverage a suite of tools such as; Sherlock!")
@@ -125,10 +127,8 @@ def main_script():
             section("FORENSICS") ######################
             command(Fore.RED,
                 "Autodd | Create disc images & snapshots for later analysis, or mount one!")
-            command(Fore.RED,
+            command(Fore.GREEN,
                 "Exif | Check exif data on a file, or wipe it clean.")
-            command(Fore.RED,
-                "Geo | Geo-locate an IP, or exif & meta data.")
             command(Fore.GREEN,
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
             command(Fore.RED,
@@ -178,6 +178,10 @@ def main_script():
             if option.lower() == "bankindex":
                 bankindex.bankindex()
                 os._exit(0)
+
+            if option.lower() == "ytd":
+                ytd.ytd()
+                os._exit(0)
             # CASE-GEN.
             # SDB.
             # Loki.
@@ -203,6 +207,10 @@ def main_script():
             # API config.
             if option == "apicon".lower():
                 apicon.apicon()
+                os._exit(0)
+
+            if option == "exif".lower():
+                exif.exif()
                 os._exit(0)
 
 
