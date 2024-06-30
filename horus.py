@@ -24,6 +24,7 @@ import src.modules.wigle as wigle
 import src.modules.bankindex as bankindex
 import src.modules.exif as exif
 import src.modules.ytd as ytd
+import src.modules.falcon as falcon
 # CASE-GEN.
 # SDB.
 # Loki.
@@ -63,6 +64,7 @@ ap.add_argument('-exif', help='Check exif data on a file, or wipe it clean.\n', 
 ap.add_argument('-cryptotrace', help='Transaction information, & crypto-wallet tracing.', action="store_true")
 #ap.add_argument('-Dischook', help='\n', action="store_true")
 ap.add_argument('-ytd', help='\n', action="store_true")
+ap.add_argument('-falcon', help='\n', action="store_true")
 #ap.add_argument('-Leverage', help='\n', action="store_true")
 # CASE-GEN.
 #ap.add_argument('-Casegenerate', help='\n', action="store_true")
@@ -201,6 +203,15 @@ if args['ytd']: # Runs the mactrace program.
     while True:
         try:
             ytd.ytd()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['falcon']: # Runs the mactrace program.
+    while True:
+        try:
+            falcon.falcon()
             os._exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
