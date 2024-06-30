@@ -30,6 +30,7 @@ import src.modules.wigle as wigle
 import src.modules.bankindex as bankindex
 import src.modules.exif as exif
 import src.modules.ytd as ytd
+import src.modules.falcon as falcon
 # FORENSICS.
 
 
@@ -132,7 +133,7 @@ def main_script():
             command(Fore.GREEN,
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
             command(Fore.RED,
-                "Netjack | Crack a capture file using Netjack!")
+                "Falcon | Packet analysis; sniff for your own in the terminal or use a capture file!")
             print(f"\n{notice}  Remember; run `apicon` command to configure the API database.")
 
             option = input(f"{prompt}")
@@ -188,29 +189,33 @@ def main_script():
             # FORENSICS.
 
             # Loki.
-            if option == "lokigen".lower():
+            if option.lower() == "lokigen":
                 loki_keygen.loki_keygen()
                 os._exit(0)
 
-            if option == "lokidiscovery".lower():
+            if option.lower() == "lokidiscovery":
                 loki_discovery.loki_discovery()
                 os._exit(0)
 
-            if option == "lokiencrypt".lower():
+            if option.lower() == "lokiencrypt":
                 loki_encrypt.loki_encrypt()
                 os._exit(0)
 
-            if option == "lokidecrypt".lower():
+            if option.lower() == "lokidecrypt":
                 loki_decrypt.loki_decrypt()
                 os._exit(0)
             # FORENSICS.
             # API config.
-            if option == "apicon".lower():
+            if option.lower() == "apicon":
                 apicon.apicon()
                 os._exit(0)
 
-            if option == "exif".lower():
+            if option.lower() == "exif":
                 exif.exif()
+                os._exit(0)
+
+            if option.lower() == "falcon":
+                falcon.falcon()
                 os._exit(0)
 
 
