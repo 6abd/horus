@@ -4,7 +4,7 @@ import os # Operating System functions.
 from colorama import Fore # For text colour.
 import random # For tagline.
 
-version = ("1.2.4") # Major.Minor.Rev/Build
+version = ("1.2.6") # Major.Minor.Rev/Build
 motd = (f"{Fore.LIGHTRED_EX}Are you worried yet?{Fore.LIGHTRED_EX}") # Always use 20 char max.
 tag = ['                                Access the matrix', '                                Break the system'] # Use spaces to centre the tag to the divider bar.
 
