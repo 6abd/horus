@@ -132,7 +132,7 @@ def main_script():
                 "Exif | Check exif data on a file, or wipe it clean.")
             command(Fore.GREEN,
                 "Vt | Connect to the virus-total API to scan, or screen files, links, etc.")
-            command(Fore.RED,
+            command(Fore.GREEN,
                 "Falcon | Packet analysis; sniff for your own in the terminal or use a capture file!")
             print(f"\n{notice}  Remember; run `apicon` command to configure the API database.")
 
