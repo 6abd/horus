@@ -5,3 +5,4 @@ shodan==1.31.0
 pytest==8.1.1
 exif==1.6.0
 pytube==15.0.0
+pyshark==0.6
