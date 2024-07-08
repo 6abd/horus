@@ -100,7 +100,7 @@ def falcon():
     if option == "1":
         inter = input(f"{question} Enter an interface: ")
         filter = input(f"{question} Enter a BPF filter if you would like (Press enter if not): ")
-        sniff_secs = int(input(f"{question} How long (secs) to sniff for packets? "))
+        sniff_secs = int(input(f"{question} How many packets to sniff? "))
 
         cap = pyshark.LiveCapture(interface=inter, bpf_filter=filter)
         cap.sniff(sniff_secs)
