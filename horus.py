@@ -12,6 +12,7 @@ import src.apicon as apicon
 # # SECURITY.
 import src.modules.pvpn as pvpn
 # ENUMERATION.
+import src.modules.recpull as recpull
 # OSINT.
 import src.modules.shodan as shodan
 import src.modules.numlook as numlook
@@ -47,7 +48,7 @@ ap.add_argument('-pvpn', help='\n', action="store_true")
 #ap.add_argument('-Ovpn', help='\n', action="store_true")
 # ENUMERATION.
 #ap.add_argument('-Fallenflare', help='\n', action="store_true")
-#ap.add_argument('-Recpull', help='\n', action="store_true")
+ap.add_argument('-recpull', help='\n', action="store_true")
 #ap.add_argument('-Anonfile', help='\n', action="store_true")
 #ap.add_argument('-Onionshare', help='\n', action="store_true")
 # OSINT.
@@ -60,11 +61,16 @@ ap.add_argument('-bankindex', help='Search up BIN/IIN, Sort Codes, Cheque detail
 ap.add_argument('-mactrace', help='Type in an MAC address to get the vendor or device.', action="store_true")
 ap.add_argument('-flightinfo', help='\n', action="store_true")
 ap.add_argument('-exif', help='Check exif data on a file, or wipe it clean.\n', action="store_true")
-#ap.add_argument('-Licenseinfo', help='\n', action="store_true")
+ap.add_argument('-licenseinfo', help='\n', action="store_true")
 ap.add_argument('-cryptotrace', help='Transaction information, & crypto-wallet tracing.', action="store_true")
 #ap.add_argument('-Dischook', help='\n', action="store_true")
 ap.add_argument('-ytd', help='\n', action="store_true")
 ap.add_argument('-falcon', help='\n', action="store_true")
+ap.add_argument('-lokiencrypt', help='\n', action="store_true")
+ap.add_argument('-lokidecrypt', help='\n', action="store_true")
+ap.add_argument('-lokigen', help='\n', action="store_true")
+ap.add_argument('-lokiprobe', help='\n', action="store_true")
+
 #ap.add_argument('-Leverage', help='\n', action="store_true")
 # CASE-GEN.
 #ap.add_argument('-Casegenerate', help='\n', action="store_true")
@@ -154,7 +160,7 @@ if args['cryptotrace']: # Runs the cryptotrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['vt']:
+if args['vt']: # Runs the vt program.
   while True:
     try:
       vt.vt()
@@ -163,7 +169,7 @@ if args['vt']:
       print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
       os._exit(0)
 
-if args['flightinfo']: # Runs the mactrace program.
+if args['flightinfo']: # Runs the flightinfo program.
     while True:
         try:
             flightinfo.flightinfo()
@@ -172,7 +178,7 @@ if args['flightinfo']: # Runs the mactrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['wigle']: # Runs the mactrace program.
+if args['wigle']: # Runs the wigle program.
     while True:
         try:
             wigle.wigle()
@@ -181,7 +187,7 @@ if args['wigle']: # Runs the mactrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['bankindex']: # Runs the mactrace program.
+if args['bankindex']: # Runs the bankindex program.
     while True:
         try:
             bankindex.bankindex()
@@ -190,7 +196,7 @@ if args['bankindex']: # Runs the mactrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['exif']: # Runs the mactrace program.
+if args['exif']: # Runs the exif program.
     while True:
         try:
             exif.exif()
@@ -199,7 +205,7 @@ if args['exif']: # Runs the mactrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['ytd']: # Runs the mactrace program.
+if args['ytd']: # Runs the ytd program.
     while True:
         try:
             ytd.ytd()
@@ -208,7 +214,7 @@ if args['ytd']: # Runs the mactrace program.
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
 
-if args['falcon']: # Runs the mactrace program.
+if args['falcon']: # Runs the falcon program.
     while True:
         try:
             falcon.falcon()
@@ -216,6 +222,52 @@ if args['falcon']: # Runs the mactrace program.
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
+
+if args['lokiencrypt']: # Runs the loki_encrypt program.
+    while True:
+        try:
+            loki_encrypt.loki_encrypt()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['lokidecrypt']: # Runs the loki_decrypt program.
+    while True:
+        try:
+            loki_decrypt.loki_decrypt()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['lokigen']: # Runs the loki_keygen program.
+    while True:
+        try:
+            loki_keygen.loki_keygen()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['lokiprobe']: # Runs the loki_discovery program.
+    while True:
+        try:
+            loki_discovery.loki_discovery()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
+if args['recpull']: # Runs the recpull program.
+    while True:
+        try:
+            recpull.recpull()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            os._exit(0)
+
 
 if __name__ == '__main__':
     try:

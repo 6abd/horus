@@ -32,7 +32,7 @@ def loki_keygen():
     try:
         print(f"\n{question} Do you want to back up your current key? [Y/n]")
         option = input(f"{command}")
-        key_path = './var/pipes/loki.key'
+        key_path = './src/modules/var/pipes/loki.key'
         option = option.lower()
 
         # Backup key
@@ -65,3 +65,6 @@ def loki_keygen():
             sys.exit(0)
         except SystemExit:
             os._exit(0)
+
+if __name__ == '__main__':
+    loki_keygen()

@@ -39,14 +39,14 @@ def loki_discovery():
 
 # Error handling.
         except KeyboardInterrupt:
-            print(f"\n{exited} {notice} {successfully}\n")
+            print(f"\n{exited} {notice} {failed}\n")
             print(f'{notice} You interrupted the program.\n')
             try:
                 sys.exit(0) # Attempts to exit.
             except SystemExit:
                 os._exit(0) # Attempts to exit.
         except ValueError:
-            print(f"\n{exited} {print.snotice} {successfully}\n")
+            print(f"\n{exited} {notice} {failed}\n")
             print(f'{notice} You entered invalid data into a field.\n')
             try:
                 sys.exit(0) # Attempts to exit.

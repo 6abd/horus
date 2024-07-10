@@ -31,7 +31,7 @@ def loki_encrypt():
             print(f"\n{question} What directory would you like to encrypt?")
             dir_encrypt = input(f"{command}")
             os.system(f"\ncp ./src/modules/loki_encryptor.py {dir_encrypt}")
-            os.system(f"cp ./var/pipes/loki.key {dir_encrypt}")
+            os.system(f"cp ./src/modules/var/pipes/loki.key {dir_encrypt}")
             os.chdir(f"{dir_encrypt}")
             os.system(f"cd {dir_encrypt}")
             os.system(f"python3 {dir_encrypt}/loki_encryptor.py")

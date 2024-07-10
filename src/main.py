@@ -10,6 +10,7 @@ from colorama import Fore
 from . import apicon
 # SECURITY.
 # ENUMERATION.
+import src.modules.recpull as recpull
 # OSINT.
 import src.modules.shodan as shodan
 import src.modules.numlook as numlook
@@ -74,7 +75,7 @@ def main_script():
             section("ENUMERATION") #################
             command(Fore.YELLOW,
                 "Fallenflare | Bypass cloudflare.")
-            command(Fore.RED,
+            command(Fore.GREEN,
                 "Recpull | Pulls a tracert, whois, dns, mx history & namp, custom-formatted.")
             command(Fore.RED,
                 "Anonfile | Up/download from Anonfiles.")
@@ -95,8 +96,8 @@ def main_script():
                 "Mactrace | Type in an MAC address to get the vendor or device.")
             command(Fore.GREEN,
                 "Flightinfo | Real-time data; global flights, military status, route, etc.")
-            command(Fore.RED,
-                "Licenseinfo | Get information from a car license plate.")
+            command(Fore.GREEN,
+                "Licenseinfo | Get information from a car license plate (Currently US Only).")
             command(Fore.GREEN,
                 "Cryptotrace | Transaction information, & crypto-wallet tracing.")
             command(Fore.RED,
@@ -106,27 +107,26 @@ def main_script():
             command(Fore.RED,
                 "Leverage | You can leverage a suite of tools such as; Sherlock!")
             section("CASE-GEN") ###################
-            command(Fore.RED,
+            command(Fore.YELLOW,
                 "Casegenerate | Build case files from skeleton docs for later population.")
-            command(Fore.RED,
-                "Casesecure | Use Loki to secure a case-file with it's associated Loki key!")
-            print("         (this also prints out the check_sum & hash for validation)")
             command(Fore.RED,
                 "Casedelete | Delete a case from the system, & it's associated Loki key.")
             section("SDB") ###########################
             command(Fore.YELLOW,
                 "Create or search through your custom horus database built in SQL.")
             section("Loki") ##########################
-            command(Fore.YELLOW,
+            command(Fore.GREEN,
                 "Lokien/decrypt | En/decrypt a directory or file with Loki keys!")
-            command(Fore.YELLOW,
-                "Lokizip | Create zips further secured with Loki, & an optional password.")
+            command(Fore.GREEN,
+                "Lokigen | Generate a key for Loki to use for encryption.")
             command(Fore.YELLOW,
                 "Lokichain | List all known Loki keys on a system, but not their directory.")
-            command(Fore.YELLOW,
+            command(Fore.GREEN,
+                "Lokiprobe | Discover subdirectories and files of a chosen directory.")
+            command(Fore.RED,
                 "Lokivault | Access the Loki vault over terminal, move & re-arrange, etc.")
             section("FORENSICS") ######################
-            command(Fore.RED,
+            command(Fore.YELLOW,
                 "Autodd | Create disc images & snapshots for later analysis, or mount one!")
             command(Fore.GREEN,
                 "Exif | Check exif data on a file, or wipe it clean.")
@@ -216,6 +216,10 @@ def main_script():
 
             if option.lower() == "falcon":
                 falcon.falcon()
+                os._exit(0)
+
+            if option.lower() == "recpull":
+                recpull.recpull()
                 os._exit(0)
 
 
