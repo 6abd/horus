@@ -62,7 +62,7 @@ To manually configure API keys, navigate to ```/src/modules/var/pipes/api_config
 ```
 
 <p align="center">
-  <img src="https://i.ibb.co/M75HnnL/Screenshot-2024-06-30-at-12-49-53-AM.png"/>
+  <img src="https://i.ibb.co/1Gknr1b/Screenshot-2024-07-11-at-10-20-11-AM.png"/>
 </p>
 
 *On Shodan: Shodan is a paid API, so in order for your API to work you need to subscribe to them. A lot of its feature's location-related functionality is available in 'geolock', but more detailed features require that API.*
