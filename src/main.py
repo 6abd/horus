@@ -25,6 +25,7 @@ import src.modules.loki_decrypt as loki_decrypt
 import src.modules.cryptotrace as cryptotrace
 import src.modules.vt as vt
 import src.modules.mactrace as mactrace
+import src.modules.ovpn as ovpn
 import src.modules.pvpn as pvpn
 import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
@@ -70,7 +71,7 @@ def main_script():
                 "Torshell | Drop into a Tor sub-shell, or connect to Tor.")
             command(Fore.GREEN,
                 "Pvpn | Connect to a random Proton vpn.")
-            command(Fore.RED,
+            command(Fore.YELLOW,
                 "Ovpn | Connect to a specified open vpn.")
             section("ENUMERATION") #################
             command(Fore.YELLOW,
@@ -136,7 +137,7 @@ def main_script():
                 "Falcon | Packet analysis; sniff for your own in the terminal or use a capture file!")
             print(f"\n{notice}  Remember; run `apicon` command to configure the API database.")
 
-            option = input(f"{prompt}")
+            option = input(f"{prompt} ")
             # SECURITY.
             # ENUMERATION.
             # OSINT.
@@ -159,6 +160,10 @@ def main_script():
             if option.lower() == "vt":
               vt.vt()
               os._exit(0)
+
+            if option.lower() == "ovpn":
+                ovpn.ovpn()
+                os._exit(0)
 
             if option.lower() == "pvpn":
               pvpn.pvpn()
