@@ -60,12 +60,12 @@ def get_links_by_platform():
     nord = ''
     mullvad = ''
 
-    if PLATFORM == "linux":
+    if PLATFORM.startswith("linux"):
         openvpn = "https://openvpn.net/openvpn-client-for-linux/"
         nord = "https://support.nordvpn.com/hc/en-us/articles/20164827795345-Connect-to-NordVPN-using-Linux-Terminal"
         proton = "https://protonvpn.com/support/linux-openvpn/"
         mullvad = "https://mullvad.net/en/help/linux-openvpn-installation"
-    elif PLATFORM == "windows":
+    elif PLATFORM == "win32":
         openvpn = "https://openvpn.net/connect-docs/installation-guide-windows.html"
         nord = "https://support.nordvpn.com/hc/en-us/articles/19749554331793-How-to-set-up-a-manual-connection-on-Windows-using-OpenVPN"
         proton = "https://protonvpn.com/support/openvpn-windows-setup/"
