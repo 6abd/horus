@@ -17,8 +17,7 @@ text = (f"{Fore.WHITE}")  # Change the colour of text output in the client side
 # Changes the [], | and : in the client side
 dividers = (f"{Fore.LIGHTRED_EX}")
 # Success output.
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{
-           Fore.WHITE}] Program executed sucessfully.")
+success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed successfully.")
 response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
 # Successfully output.
 successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]")
@@ -36,7 +35,7 @@ disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]")
 command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ")
 
 # Pre-run.
-os.system("clear")      
+os.system("clear")
 
 # Hide tracebacks - change to 1 for dev mode.
 sys.tracebacklimit = 0
@@ -46,12 +45,14 @@ sys.tracebacklimit = 0
 PROC_ID = multiprocessing.Value('i', 0)
 PLATFORM = sys.platform
 
+
 # --------------------------------
 # Helper functions
 # --------------------------------
 def has_dependencies_installed() -> bool:
     exec_path = shutil.which("openvpn")
     return exec_path and os.access(exec_path, os.X_OK)
+
 
 def get_links_by_platform() -> (str, str, str, str):
     global PLATFORM
@@ -78,8 +79,9 @@ def get_links_by_platform() -> (str, str, str, str):
         mullvad = "https://mullvad.net/en/help/tunnelblick-mac"
     else:
         raise Exception("Unsupported platform")
-    
+
     return openvpn, proton, nord, mullvad
+
 
 def has_files_in_dir(directory: str, pattern: str) -> bool:
     """
@@ -88,12 +90,14 @@ def has_files_in_dir(directory: str, pattern: str) -> bool:
     files = glob.glob(os.path.join(directory, pattern))
     return files and len(files) > 0
 
+
 def list_files_in_dir(directory: str):
     """
     Lists all the files in a directory
     """
     files = glob.glob(os.path.join(directory, "*"))
     [print(file) for file in files]
+
 
 def is_admin():
     try:
@@ -103,6 +107,7 @@ def is_admin():
 
     return admin
 # --------------------------------
+
 
 def get_windows_command_and_path(config_file_path: str) -> (list, str):
     """
@@ -120,7 +125,7 @@ def get_windows_command_and_path(config_file_path: str) -> (list, str):
     """
     command = []
     windows_path = "C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe"
-    config_path = "C:\\Program Files\\OpenVPN\\config\\"    
+    config_path = "C:\\Program Files\\OpenVPN\\config\\"
     config_file_name = config_file_path.split("\\")[-1]
 
     command = [windows_path, "--connect", config_file_name]
@@ -132,12 +137,12 @@ def get_windows_command_and_path(config_file_path: str) -> (list, str):
         print(f"{notice} Config file already exists in {config_path}. Executing...")
 
     return command, config_path
-    
 
-def connect(config_file_path: str, move = False) -> subprocess.Popen:
+
+def connect(config_file_path: str, move=False) -> subprocess.Popen:
     """
     Call the underlying openvpn command to connect to the VPN server.
-        
+
     If run on Windows, move the config file to the OpenVPN config directory to make running the program easier.
 
     Linux and MacOS do not need the config file to be moved.
@@ -184,22 +189,22 @@ def connect(config_file_path: str, move = False) -> subprocess.Popen:
                 break
             else:
                 print(line.decode().strip())
-            
+
         return proc
     except subprocess.CalledProcessError as e:
-        print(f"{alert} Error executing command: {e}")  
+        print(f"{alert} Error executing command: {e}")
     except Exception as e:
         print(f"{alert} An error occurred: {e}")
 
 
-def process(config_path: str, move = False) -> (multiprocessing.Process, int):
+def process(config_path: str, move=False) -> (multiprocessing.Process, int):
     """
     This function is the main entry point of the program. It takes a config file path and an optional 'move' flag.
 
     The 'move' flag is determined by whether there are "authentication" files in the same folder as the config file. Some
-    providers include the authentication and certs in the config file itself, others include them in separate files and 
+    providers include the authentication and certs in the config file itself, others include them in separate files and
     then refer to those in the config file using relative paths.
-    
+
     Args:
         config_path (str): The path to the OpenVPN configuration file.
         move (bool): If True, the program will change directory to the same as the config file before execution.
@@ -207,7 +212,7 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
     Returns:
         None
     """
-    
+
     global PLATFORM
     global PROC_ID
 
@@ -217,8 +222,8 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
     while running:
         try:
             if not PROC_ID.value or PROC_ID.value == 0:
-                
-                # On Windows, multiprocessing imports the main script and executes it, causing all of the intro text to display 
+
+                # On Windows, multiprocessing imports the main script and executes it, causing all of the intro text to display
                 # again. It doesn't break anything but it looks bad and confusing.
                 if PLATFORM != "win32":
                     print(f"{alert} openvpn requires admin permissions. You might be asked to enter your password")
@@ -233,7 +238,7 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
 
                 if not proc:
                     print(f"{alert} Error connecting to VPN")
-                    running = False             
+                    running = False
 
             proc_id = PROC_ID.value
             print(f"{response} VPN is connected using process {proc_id}")
@@ -244,7 +249,7 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
 
             if PROC_ID and PROC_ID.value != 0:
                 os.kill(PROC_ID.value, signal.SIGTERM)
-            PROC_ID.value = 0  
+            PROC_ID.value = 0
 
     if proc_id and proc_id != 0:
         print(f"{notice} VPN process is running as process ID {proc_id}. If you wish to stop it, run: sudo kill -9 {proc_id} or restarting the computer will end it.")
@@ -270,7 +275,7 @@ def ovpn():
             if PLATFORM == "win32" and not is_admin():
                 print(f"{alert} This program does support Windows but you will need to run in Administrator Mode.")
                 return
-        
+
             path = input(
                 f"{prompt} Enter the filepath to your OpenVPN connection profile (*.ovpn file): "
             )
@@ -281,8 +286,8 @@ def ovpn():
 
             if move == 'unsure':
                 if (
-                    has_files_in_dir(Path(path).resolve(),"*.crt")
-                    or has_files_in_dir(Path(path).resolve(),"*_userpass.txt")
+                    has_files_in_dir(Path(path).resolve(), "*.crt")
+                    or has_files_in_dir(Path(path).resolve(), "*_userpass.txt")
                 ):
                     move = "y"
 
