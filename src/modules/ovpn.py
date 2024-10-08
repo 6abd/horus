@@ -48,11 +48,11 @@ PLATFORM = sys.platform
 # --------------------------------
 # Helper functions
 # --------------------------------
-def has_dependencies_installed():
+def has_dependencies_installed() -> bool:
     exec_path = shutil.which("openvpn")
     return exec_path and os.access(exec_path, os.X_OK)
 
-def get_links_by_platform():
+def get_links_by_platform() -> (str, str, str, str):
     global PLATFORM
 
     openvpn = ''
@@ -70,7 +70,7 @@ def get_links_by_platform():
         nord = "https://support.nordvpn.com/hc/en-us/articles/19749554331793-How-to-set-up-a-manual-connection-on-Windows-using-OpenVPN"
         proton = "https://protonvpn.com/support/openvpn-windows-setup/"
         mullvad = "https://mullvad.net/en/help/windows-openvpn-installation"
-    elif PLATFORM == "macos":
+    elif PLATFORM == "darwin":
         openvpn = "https://openvpn.net/connect-docs/connect-for-macos.html"
         proton = "https://protonvpn.com/support/mac-vpn-setup/"
         nord = "https://support.nordvpn.com/hc/en-us/articles/19924903986961-Manual-connection-setup-with-Tunnelblick-on-macOS"
@@ -80,7 +80,7 @@ def get_links_by_platform():
     
     return openvpn, proton, nord, mullvad
 
-def has_files_in_dir(directory: str, pattern: str) -> list[str]:
+def has_files_in_dir(directory: str, pattern: str) -> bool:
     """
     Checks if a directory contains any file that matches the given pattern
     """
@@ -125,7 +125,7 @@ def connect(config_path: str, move = False):
         print(f"{alert} An error occurred: {e}")
 
 
-def process(config_path: str, move = False):
+def process(config_path: str, move = False) -> (multiprocessing.Process, int):
     """
     This function is the main entry point of the program. It takes a config file path and an optional 'move' flag.
 
@@ -172,8 +172,6 @@ def process(config_path: str, move = False):
 
     if proc_id:
         print(f"{notice} VPN process is running as process ID {proc_id}. If you wish to stop it, run: sudo kill -9 {proc_id} or restarting the computer will end it.")
-
-    sys.exit(0)
 
     return proc, proc_id
 
