@@ -104,9 +104,43 @@ def is_admin():
     return admin
 # --------------------------------
 
-def connect(config_file_path: str, move = False):
+def get_windows_command_and_path(config_file_path: str) -> (list, str):
+    """
+    Handle Windows specific config and setup.
+
+    The Windows method requires that the *.ovpn config file is placed inside the config directory.
+    This function checks for its existence there and moves it if it does not exist.
+
+    Args:
+        config_file_path (str): The path to the OpenVPN configuration file.
+
+    Returns:
+        list: The command to execute.
+        str: The path to the config directory.
+    """
+    command = []
+    windows_path = "C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe"
+    config_path = "C:\\Program Files\\OpenVPN\\config\\"    
+    config_file_name = config_file_path.split("\\")[-1]
+
+    command = [windows_path, "--connect", config_file_name]
+    if not has_files_in_dir(Path(config_path).resolve(), config_file_name):
+        print(f"{notice} Moving config file to {config_path}")
+        moved = subprocess.run(f"copy {config_file_path} {config_path + config_file_name}", shell=True, check=True)
+        print(f"{response} Config file moved to {config_path}: {moved.returncode == 0}")
+    else:
+        print(f"{notice} Config file already exists in {config_path}. Executing...")
+
+    return command, config_path
+    
+
+def connect(config_file_path: str, move = False) -> subprocess.Popen:
     """
     Call the underlying openvpn command to connect to the VPN server.
+        
+    If run on Windows, move the config file to the OpenVPN config directory to make running the program easier.
+
+    Linux and MacOS do not need the config file to be moved.
 
     Args:
         config_path (str): Path to the OpenVPN configuration file.
@@ -118,31 +152,16 @@ def connect(config_file_path: str, move = False):
     global PROC_ID
     global PLATFORM
 
-    windows_path = "C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe"
     command = []
 
     if PLATFORM == "win32":
-        config_path = "C:\\Program Files\\OpenVPN\\config\\"
-        seperator = "\\"
+        command, config_path = get_windows_command_and_path(config_file_path)
     else:
         config_path = "/etc/openvpn/"
-        seperator = "/"
-
-    config_file_name = config_file_path.split(seperator)[-1]
+        command = ["sudo", "openvpn", "--config", config_file_path]
 
     if move:
         os.chdir(os.path.dirname(config_path))
-
-    if not has_files_in_dir(Path(config_path).resolve(), config_file_name):
-        print(f"{notice} Moving config file to {config_path}")
-        shutil.move(config_file_path, config_path + config_file_name)
-    else:
-        print(f"{notice} Config file already exists in {config_path}. Executing...")
-
-    if PLATFORM == "win32":
-        command = [windows_path, "--connect", config_file_name]
-    else:
-        command = ["sudo", "openvpn", "--config", config_file_name]
 
     try:
         proc = subprocess.Popen(
@@ -153,16 +172,20 @@ def connect(config_file_path: str, move = False):
         # On Windows we're using the GUI as the CLI isn't compiled with support for compression and this breaks many
         # config files. The GUI doesn't return any data to our process so we can't read the output _but_ as the GUI
         # opens up, it should be obvious if it starts or are any issues.
-        if PLATFORM != "win32":
-            while True:
-                line = proc.stdout.readline()
-                if 'Initialization Sequence Completed' in line.decode():
-                    print(f"{response} OpenVPN initialized")
-                    PROC_ID.value = proc.pid
-                    break
-        else:
+        if PLATFORM == "win32":
             print(f"{response} OpenVPN initialized. Check the GUI for any errors or the taskbar for the OpenVPN GUI icon.")
+            return proc
 
+        while True:
+            line = proc.stdout.readline()
+            if 'Initialization Sequence Completed' in line.decode():
+                print(f"{response} OpenVPN initialized")
+                PROC_ID.value = proc.pid
+                break
+            else:
+                print(line.decode().strip())
+            
+        return proc
     except subprocess.CalledProcessError as e:
         print(f"{alert} Error executing command: {e}")  
     except Exception as e:
