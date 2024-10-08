@@ -1,4 +1,5 @@
 # Imports.
+import ctypes
 import glob
 import multiprocessing
 import os
@@ -87,9 +88,23 @@ def has_files_in_dir(directory: str, pattern: str) -> bool:
     files = glob.glob(os.path.join(directory, pattern))
     return files and len(files) > 0
 
+def list_files_in_dir(directory: str):
+    """
+    Lists all the files in a directory
+    """
+    files = glob.glob(os.path.join(directory, "*"))
+    [print(file) for file in files]
+
+def is_admin():
+    try:
+        admin = os.getuid() == 0
+    except AttributeError:
+        admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+
+    return admin
 # --------------------------------
 
-def connect(config_path: str, move = False):
+def connect(config_file_path: str, move = False):
     """
     Call the underlying openvpn command to connect to the VPN server.
 
@@ -103,21 +118,50 @@ def connect(config_path: str, move = False):
     global PROC_ID
     global PLATFORM
 
+    windows_path = "C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe"
+    command = []
+
+    if PLATFORM == "win32":
+        config_path = "C:\\Program Files\\OpenVPN\\config\\"
+        seperator = "\\"
+    else:
+        config_path = "/etc/openvpn/"
+        seperator = "/"
+
+    config_file_name = config_file_path.split(seperator)[-1]
+
     if move:
         os.chdir(os.path.dirname(config_path))
 
+    if not has_files_in_dir(Path(config_path).resolve(), config_file_name):
+        print(f"{notice} Moving config file to {config_path}")
+        shutil.move(config_file_path, config_path + config_file_name)
+    else:
+        print(f"{notice} Config file already exists in {config_path}. Executing...")
+
+    if PLATFORM == "win32":
+        command = [windows_path, "--connect", config_file_name]
+    else:
+        command = ["sudo", "openvpn", "--config", config_file_name]
+
     try:
         proc = subprocess.Popen(
-            ["sudo", "openvpn", "--config", config_path],
+            command,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE
         )
 
-        while True:
-            line = proc.stdout.readline()
-            if 'Initialization Sequence Completed' in line.decode():
-                print(f"{response} OpenVPN initialized")
-                PROC_ID.value = proc.pid
-                break
+        # On Windows we're using the GUI as the CLI isn't compiled with support for compression and this breaks many
+        # config files. The GUI doesn't return any data to our process so we can't read the output _but_ as the GUI
+        # opens up, it should be obvious if it starts or are any issues.
+        if PLATFORM != "win32":
+            while True:
+                line = proc.stdout.readline()
+                if 'Initialization Sequence Completed' in line.decode():
+                    print(f"{response} OpenVPN initialized")
+                    PROC_ID.value = proc.pid
+                    break
+        else:
+            print(f"{response} OpenVPN initialized. Check the GUI for any errors or the taskbar for the OpenVPN GUI icon.")
 
     except subprocess.CalledProcessError as e:
         print(f"{alert} Error executing command: {e}")  
@@ -141,16 +185,25 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
         None
     """
     
+    global PLATFORM
     global PROC_ID
+
     proc_id = None
     running = True
 
     while running:
         try:
             if not PROC_ID.value or PROC_ID.value == 0:
-                print(f"{alert} openvpn requires admin permissions. You might be asked to enter your password")
-                proc = multiprocessing.Process(target=connect, args=(config_path, move,))
-                proc.start()
+                
+                # On Windows, multiprocessing imports the main script and executes it, causing all of the intro text to display 
+                # again. It doesn't break anything but it looks bad and confusing.
+                if PLATFORM != "win32":
+                    print(f"{alert} openvpn requires admin permissions. You might be asked to enter your password")
+                    proc = multiprocessing.Process(target=connect, args=(config_path, move,))
+                    proc.start()
+                else:
+                    connect(config_path, move)
+                    return None, None
 
                 while not PROC_ID.value or PROC_ID.value == 0:
                     time.sleep(1)
@@ -170,7 +223,7 @@ def process(config_path: str, move = False) -> (multiprocessing.Process, int):
                 os.kill(PROC_ID.value, signal.SIGTERM)
             PROC_ID.value = 0  
 
-    if proc_id:
+    if proc_id and proc_id != 0:
         print(f"{notice} VPN process is running as process ID {proc_id}. If you wish to stop it, run: sudo kill -9 {proc_id} or restarting the computer will end it.")
 
     return proc, proc_id
@@ -191,10 +244,17 @@ def ovpn():
         option = input(f"{command}").lower()
 
         if option == "connect":
+            if PLATFORM == "win32" and not is_admin():
+                print(f"{alert} This program does support Windows but you will need to run in Administrator Mode.")
+                return
+        
             path = input(
-                f"{prompt} Enter the FULLY QUALIFIED filepath to your OpenVPN connection profile (*.ovpn file): "
+                f"{prompt} Enter the filepath to your OpenVPN connection profile (*.ovpn file): "
             )
-            move = input(f"{alert}{prompt} Are there any auth files in the same folder as your ovpn profile? Such as a *.crt and *_userpass.txt [y/n/unsure] ").lower()
+            move = input(f"{prompt} Are there any auth files in the same folder as your ovpn profile? Such as a *.crt and *_userpass.txt [y/n/unsure] ").lower()
+
+            if not path.startswith("\\") and not path.startswith("C:\\"):
+                path = os.path.abspath(path)
 
             if move == 'unsure':
                 if (
@@ -204,10 +264,10 @@ def ovpn():
                     move = "y"
 
             if Path(path).is_file():
-                proc, proc_id = process(Path(path).resolve(), move == 'y')
+                proc, proc_id = process(path, move == 'y')
                 return proc
             else:
-                print(f"{alert} Supplied config file does not exist, try again.")
+                print(f"{alert} Supplied config file does not exist, is not a file or is not accessible, please try again.")
         elif option == "config":
             print(f"{alert} We can't set up the OpenVPN config file for any particular provider, but here are some helpful links for how to get started:")
             print(f"\tProton VPN: {proton}")
