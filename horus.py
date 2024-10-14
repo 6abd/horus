@@ -10,6 +10,7 @@ import src.main as main
 # Modules
 import src.apicon as apicon
 # # SECURITY.
+import src.modules.ovpn as ovpn
 import src.modules.pvpn as pvpn
 # ENUMERATION.
 import src.modules.recpull as recpull
@@ -45,7 +46,7 @@ ap.add_argument('-apicon', help='Configure the API settings for Horus\n', action
 # SECURITY.
 #ap.add_argument('-Torshell', help='\n', action="store_true")
 ap.add_argument('-pvpn', help='\n', action="store_true")
-#ap.add_argument('-Ovpn', help='\n', action="store_true")
+ap.add_argument('-ovpn', help='Connect to an OpenVPN server using a config/profile file.\n', action="store_true")
 # ENUMERATION.
 #ap.add_argument('-Fallenflare', help='\n', action="store_true")
 ap.add_argument('-recpull', help='\n', action="store_true")
@@ -114,6 +115,14 @@ if args['pvpn']: # Runs the pvpn program.
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
             os._exit(0)
+
+if args['ovpn']:
+    while True:
+        try:
+            ovpn.ovpn()
+            os._exit(0)
+        except Exception as error:
+            print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
 
 if args['shodan']: # Runs the shodan program.
     while True:

@@ -43,6 +43,7 @@ Once it is installed, follow these steps:
 4. In the 'horus' directory, run ```python3 horus.py``` on Linux/MacOS, or ```py horus.py``` on Windows
 
 *Note: protonvpn-cli is a requirement for the 'pvpn' command*
+*Note: openvpn CLI is a requirement for the 'ovpn' command*
 
 ## ⚙️ API Configuration
 To configure the APIs necessary for usage of certain commands, you can either manually enter them, or use the 'apicon' command
