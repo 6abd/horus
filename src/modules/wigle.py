@@ -3,22 +3,14 @@ import os
 import sys
 import json
 import requests
-from colorama import Fore # For text colour.
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-output = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    COMMAND,
+    QUESTION,
+    SUCCESS,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -35,42 +27,42 @@ with open('./src/modules/var/pipes/api_config.json') as f:
 
 # Program.
 def wigle():
-    print(f'{notice} How would you like to query WiGle: search by Bluetooth device ID ("bluetooth") or WiFi Network BSSID ("wifi")? ')
-    option = input(f'{command}').lower()
+    print_notice('How would you like to query WiGle: search by Bluetooth device ID ("bluetooth") or WiFi Network BSSID ("wifi")? ')
+    option = input(f'{COMMAND}').lower()
 
     if option == 'bluetooth':
-        netid = input(f"{question} Enter the Bluetooth device ID: ")
+        netid = input(f"{QUESTION} Enter the Bluetooth device ID: ")
         response = requests.get(f"https://api.wigle.net/api/v2/bluetooth/detail?netid={netid}", auth=(api_name,api_token)).json()
         for i in range(0, len(response)):
             data = response[i]
-            print(f"{output} Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
-            print(f"{output} QoS (0-7): {data['qos']}")
-            print(f"{output} First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
-            print(f"{output} Device Name: {data['name']}")
-            print(f"{output} Country: {data['country']}")
-            print(f"{output} Region: {data['region']}")
-            print(f"{output} City: {data['city']}")
-            print(f"{output} Address: {data['housenumber']} {data['road']}")
-            print(f"{output} Postal Code: {data['postalcode']}")
-            print("-------------------------------------------------------------------")
-        print(success)
+            print_response(f"Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
+            print_response(f"QoS (0-7): {data['qos']}")
+            print_response(f"First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
+            print_response(f"Device Name: {data['name']}")
+            print_response(f"Country: {data['country']}")
+            print_response(f"Region: {data['region']}")
+            print_response(f"City: {data['city']}")
+            print_response(f"Address: {data['housenumber']} {data['road']}")
+            print_response(f"Postal Code: {data['postalcode']}")
+            print("-" * 67)
+        print(SUCCESS)
 
     if option == 'wifi':
-        netid = input(f"{question} Enter the WiFi Network BSSID: ")
+        netid = input(f"{QUESTION} Enter the WiFi Network BSSID: ")
         response = requests.get(f"https://api.wigle.net/api/v2/network/detail?netid={netid}", auth=(api_name,api_token)).json()
         for i in range(0, len(response)):
             data = response[i]
-            print(f"{output} Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
-            print(f"{output} QoS (0-7): {data['qos']}")
-            print(f"{output} First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
-            print(f"{output} Device Name: {data['name']}")
-            print(f"{output} Country: {data['country']}")
-            print(f"{output} Region: {data['region']}")
-            print(f"{output} City: {data['city']}")
-            print(f"{output} Address: {data['housenumber']} {data['road']}")
-            print(f"{output} Postal Code: {data['postalcode']}")
-            print("-------------------------------------------------------------------")
-        print(success)
+            print_response(f"Latitude/Longitude: ({data['trilat']}, {data['trilong']})")
+            print_response(f"QoS (0-7): {data['qos']}")
+            print_response(f"First Seen & Last Seen: {data['firsttime']} - {data['lasttime']}")
+            print_response(f"Device Name: {data['name']}")
+            print_response(f"Country: {data['country']}")
+            print_response(f"Region: {data['region']}")
+            print_response(f"City: {data['city']}")
+            print_response(f"Address: {data['housenumber']} {data['road']}")
+            print_response(f"Postal Code: {data['postalcode']}")
+            print("-" * 67)
+        print(SUCCESS)
 # Run module_name module.
 if __name__ == '__main__':
     wigle()

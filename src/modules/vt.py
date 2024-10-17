@@ -1,26 +1,21 @@
 # Imports.
+import base64
+import json
 import os
 import sys
-import json
+import time
 import requests
 from colorama import Fore # For text colour.
-import time
-import base64
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    FAILED,
+    QUESTION,
+    SUCCESS,
+    SUCCESSFULLY,
+    print_alert,
+    print_notice,
+    print_response
+)
 
 
 # Pre-run.
@@ -44,12 +39,12 @@ def vt():
             "content-type": "application/x-www-form-urlencoded"
      }
 
-     option = input(f"{question} Would you like to scan a file or a URL? (Enter 'file' or 'url'): ").lower()
+     option = input(f"{QUESTION} Would you like to scan a file or a URL? (Enter 'file' or 'url'): ").lower()
 
      if option == "file":
 
         # Obtains path then opens for reading
-        path = input(f"{question} Enter a path to scan: ")
+        path = input(f"{QUESTION} Enter a path to scan: ")
         files = {"file" : (os.path.basename(path), open(os.path.abspath(path), "rb"))}
 
 
@@ -64,13 +59,13 @@ def vt():
             result = upload_request.json()
             # Virustotal ID for scanning
             scan_id = result.get("data").get("id")
-            print(f"{response} Scan ID: {scan_id}")
+            print_response(f"Scan ID: {scan_id}")
         else:
-            print(f"{failed} API Error; Request failed! Status Code: {upload_request.status_code}")
+            print(f"{FAILED} API Error; Request FAILED! Status Code: {upload_request.status_code}")
             return
 
         # Gives time for Virustotal to analyze the file
-        print(f"{notice} Analyzing...")
+        print_notice("Analyzing...")
 
         time.sleep(15)
 
@@ -83,23 +78,23 @@ def vt():
             # Calls specific parts of the dictionary based on what needs to be displayed
             stats = data["data"]["attributes"]["total_votes"]
             results = data["data"]["attributes"]["last_analysis_results"]
-            print(f"{alert} Detected as malicious: {stats['malicious']}")
-            print(f"{notice} Detected as harmless: {stats['harmless']}")
+            print_alert(f"Detected as malicious: {stats['malicious']}")
+            print_notice(f"Detected as harmless: {stats['harmless']}")
             for result in results:
-                print("----------------------------------------------")
-                print(f"{response} Vendor: {results[result]['engine_name']}")
-                print(f"{response} Version: {results[result]['engine_version']}")
-                print(f"{response} Category: {results[result]['category']}")
-                print(f"{response} Result: {results[result]['result']}")
-                print(f"{response} Method: {results[result]['method']}")
-                print("----------------------------------------------")
-            print(f"File {successfully} analysed!")
-            print(success)
+                print("-" * 46)
+                print_response(f"Vendor: {results[result]['engine_name']}")
+                print_response(f"Version: {results[result]['engine_version']}")
+                print_response(f"Category: {results[result]['category']}")
+                print_response(f"Result: {results[result]['result']}")
+                print_response(f"Method: {results[result]['method']}")
+                print("-" * 46)
+            print(f"File {SUCCESSFULLY} analysed!")
+            print(SUCCESS)
         else:
-            print(f"{failed} API Error; Request failed! Status Code: {reports_url.status_code}")
+            print(f"{FAILED} API Error; Request FAILED! Status Code: {reports_url.status_code}")
 
      elif option == "url":
-        source_url = input(f"{question} Enter a url: ")
+        source_url = input(f"{QUESTION} Enter a url: ")
         url = "https://www.virustotal.com/api/v3/urls"
 
         payload = { "url": source_url }
@@ -111,13 +106,13 @@ def vt():
             result = upload_request.json()
             # Virustotal ID for scanning
             link = result.get("data").get("links").get("self")
-            print(f"{response} Analysis Link: {link}")
+            print_response(f"Analysis Link: {link}")
         else:
-            print(f"{failed} API Error; Request failed! Status Code: {upload_request.status_code}")
+            print(f"{FAILED} API Error; Request FAILED! Status Code: {upload_request.status_code}")
             return
 
         # Gives time for Virustotal to analyze the URL
-        print(f"{notice} Analyzing...")
+        print_notice("Analyzing...")
 
         time.sleep(10)
         scan_id = base64.urlsafe_b64encode(source_url.encode()).decode().strip("=")
@@ -131,29 +126,29 @@ def vt():
             stats = data["data"]["attributes"]["last_analysis_stats"]
             results = data["data"]["attributes"]["last_analysis_results"]
             for result in results:
-                print("----------------------------------------------")
-                print(f"{response} Vendor: {results[result]['engine_name']}")
-                print(f"{response} Category: {results[result]['category']}")
+                print("-" * 46)
+                print_response(f"Vendor: {results[result]['engine_name']}")
+                print_response(f"Category: {results[result]['category']}")
 
                 if results[result]['result'] == 'clean':
-                    print(f"{response} Result: {Fore.GREEN}{results[result]['result']}")
+                    print_response(f"Result: {Fore.GREEN}{results[result]['result']}")
                 elif results[result]['result'] == 'unrated':
-                    print(f"{notice} Result: {Fore.YELLOW}{results[result]['result']}")
+                    print_notice(f"Result: {Fore.YELLOW}{results[result]['result']}")
                 else:
-                    print(f"{alert} Result: {Fore.RED}{results[result]['result']}")
+                    print_alert(f"Result: {Fore.RED}{results[result]['result']}")
 
-                print(f"{response} Method: {results[result]['method']}")
-                print("----------------------------------------------")
+                print_response(f"Method: {results[result]['method']}")
+                print("-" * 46)
 
-            print(f"\n{alert} Detected as malicious: {stats['malicious']}")
-            print(f"{notice} Detected as suspicious: {stats['suspicious']}")
-            print(f"{response} Detected as harmless: {stats['harmless']}")
-            print(f"{question} Undetected: {stats['undetected']}")
+            print_alert(f"Detected as malicious: {stats['malicious']}")
+            print_notice(f"Detected as suspicious: {stats['suspicious']}")
+            print_response(f"Detected as harmless: {stats['harmless']}")
+            print(f"{QUESTION} Undetected: {stats['undetected']}")
 
-            print(f"URL {successfully} analysed!")
-            print(success)
+            print(f"URL {SUCCESSFULLY} analysed!")
+            print(SUCCESS)
         else:
-            print(f"{failed} API Error; Request failed! Status Code: {reports_url.status_code}")
+            print(f"{FAILED} API Error; Request FAILED! Status Code: {reports_url.status_code}")
 
 # Run module_name module.
 if __name__ == '__main__':

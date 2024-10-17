@@ -9,30 +9,15 @@ import subprocess
 import sys
 import time
 
-from colorama import Fore  # For text colour.
 from pathlib import Path
 
-# Config (Prints).
-text = (f"{Fore.WHITE}")  # Change the colour of text output in the client side
-# Changes the [], | and : in the client side
-dividers = (f"{Fore.LIGHTRED_EX}")
-# Success output.
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed successfully.")
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-# Successfully output.
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]")
-# Failed output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]")
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]")  # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]")  # Notice output.
-question = (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]")  # Alert output.
-alert = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]")  # Alert output.
-# Execited output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]")
-# Disconnected output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]")
-# Always asks for a command on a new line.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ")
+from ..utils import (
+    COMMAND,
+    PROMPT,
+    print_alert,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -50,13 +35,23 @@ PLATFORM = sys.platform
 # Helper functions
 # --------------------------------
 def has_dependencies_installed() -> bool:
+    """
+    Checks if the required dependencies are installed.
+
+    Returns:
+        bool: True if all dependencies are installed AND EXECUTABLE, False otherwise.
+    """
     exec_path = shutil.which("openvpn")
     return exec_path and os.access(exec_path, os.X_OK)
 
 
 def get_links_by_platform() -> (str, str, str, str):
-    global PLATFORM
+    """
+    Populates and returns a series of links based on the users platform
 
+    Returns:
+        (str, str, str, str): A 4-tuple of links
+    """
     openvpn = ''
     proton = ''
     nord = ''
@@ -130,11 +125,11 @@ def get_windows_command_and_path(config_file_path: str) -> (list, str):
 
     command = [windows_path, "--connect", config_file_name]
     if not has_files_in_dir(Path(config_path).resolve(), config_file_name):
-        print(f"{notice} Moving config file to {config_path}")
+        print_notice(f"Moving config file to {config_path}")
         moved = subprocess.run(f"copy {config_file_path} {config_path + config_file_name}", shell=True, check=True)
-        print(f"{response} Config file moved to {config_path}: {moved.returncode == 0}")
+        print_response(f"Config file moved to {config_path}: {moved.returncode == 0}")
     else:
-        print(f"{notice} Config file already exists in {config_path}. Executing...")
+        print_notice(f"Config file already exists in {config_path}. Executing...")
 
     return command, config_path
 
@@ -154,8 +149,6 @@ def connect(config_file_path: str, move=False) -> subprocess.Popen:
     Returns:
         None
     """
-    global PROC_ID
-    global PLATFORM
 
     command = []
 
@@ -178,13 +171,13 @@ def connect(config_file_path: str, move=False) -> subprocess.Popen:
         # config files. The GUI doesn't return any data to our process so we can't read the output _but_ as the GUI
         # opens up, it should be obvious if it starts or are any issues.
         if PLATFORM == "win32":
-            print(f"{response} OpenVPN initialized. Check the GUI for any errors or the taskbar for the OpenVPN GUI icon.")
+            print_response("OpenVPN initialized. Check the GUI for any errors or the taskbar for the OpenVPN GUI icon.")
             return proc
 
         while True:
             line = proc.stdout.readline()
             if 'Initialization Sequence Completed' in line.decode():
-                print(f"{response} OpenVPN initialized")
+                print_response("OpenVPN initialized")
                 PROC_ID.value = proc.pid
                 break
             else:
@@ -192,9 +185,9 @@ def connect(config_file_path: str, move=False) -> subprocess.Popen:
 
         return proc
     except subprocess.CalledProcessError as e:
-        print(f"{alert} Error executing command: {e}")
+        print_alert(f"Error executing command: {e}")
     except Exception as e:
-        print(f"{alert} An error occurred: {e}")
+        print_alert(f"An error occurred: {e}")
 
 
 def process(config_path: str, move=False) -> (multiprocessing.Process, int):
@@ -213,9 +206,6 @@ def process(config_path: str, move=False) -> (multiprocessing.Process, int):
         None
     """
 
-    global PLATFORM
-    global PROC_ID
-
     proc_id = None
     running = True
 
@@ -226,7 +216,7 @@ def process(config_path: str, move=False) -> (multiprocessing.Process, int):
                 # On Windows, multiprocessing imports the main script and executes it, causing all of the intro text to display
                 # again. It doesn't break anything but it looks bad and confusing.
                 if PLATFORM != "win32":
-                    print(f"{alert} openvpn requires admin permissions. You might be asked to enter your password")
+                    print_alert("openvpn requires admin permissions. You might be asked to enter your password")
                     proc = multiprocessing.Process(target=connect, args=(config_path, move,))
                     proc.start()
                 else:
@@ -237,11 +227,11 @@ def process(config_path: str, move=False) -> (multiprocessing.Process, int):
                     time.sleep(1)
 
                 if not proc:
-                    print(f"{alert} Error connecting to VPN")
+                    print_alert("Error connecting to VPN")
                     running = False
 
             proc_id = PROC_ID.value
-            print(f"{response} VPN is connected using process {proc_id}")
+            print_response(f"VPN is connected using process {proc_id}")
             break
         except KeyboardInterrupt:
             proc.terminate()
@@ -252,34 +242,32 @@ def process(config_path: str, move=False) -> (multiprocessing.Process, int):
             PROC_ID.value = 0
 
     if proc_id and proc_id != 0:
-        print(f"{notice} VPN process is running as process ID {proc_id}. If you wish to stop it, run: sudo kill -9 {proc_id} or restarting the computer will end it.")
+        print_notice(f"VPN process is running as process ID {proc_id}. If you wish to stop it, run: sudo kill -9 {proc_id} or restarting the computer will end it.")
 
     return proc, proc_id
 
 
 def ovpn():
-    global PLATFORM
-
     openvpn, proton, nord, mullvad = get_links_by_platform()
 
     if not has_dependencies_installed():
-        print(f"{alert} OpenVPN is required but is not installed.")
+        print_alert("OpenVPN is required but is not installed.")
         print(f"Please install it using your package manager or by following the instructions here: {openvpn}")
 
     while True:
         # Prompt for option.
-        print(f"\n{prompt} What would you like to do? [Connect, Config]")
-        option = input(f"{command}").lower()
+        print(f"\n{PROMPT} What would you like to do? [Connect, Config]")
+        option = input(f"{COMMAND}").lower()
 
         if option == "connect":
             if PLATFORM == "win32" and not is_admin():
-                print(f"{alert} This program does support Windows but you will need to run in Administrator Mode.")
+                print_alert("This program does support Windows but you will need to run in Administrator Mode.")
                 return
 
             path = input(
-                f"{prompt} Enter the filepath to your OpenVPN connection profile (*.ovpn file): "
+                f"{PROMPT} Enter the filepath to your OpenVPN connection profile (*.ovpn file): "
             )
-            move = input(f"{prompt} Are there any auth files in the same folder as your ovpn profile? Such as a *.crt and *_userpass.txt [y/n/unsure] ").lower()
+            move = input(f"{PROMPT} Are there any auth files in the same folder as your ovpn profile? Such as a *.crt and *_userpass.txt [y/n/unsure] ").lower()
 
             if not path.startswith("\\") and not path.startswith("C:\\"):
                 path = os.path.abspath(path)
@@ -295,14 +283,14 @@ def ovpn():
                 proc, proc_id = process(path, move == 'y')
                 return proc
             else:
-                print(f"{alert} Supplied config file does not exist, is not a file or is not accessible, please try again.")
+                print_alert("Supplied config file does not exist, is not a file or is not accessible, please try again.")
         elif option == "config":
-            print(f"{alert} We can't set up the OpenVPN config file for any particular provider, but here are some helpful links for how to get started:")
+            print_alert("We can't set up the OpenVPN config file for any particular provider, but here are some helpful links for how to get started:")
             print(f"\tProton VPN: {proton}")
             print(f"\tNord VPN: {nord}")
             print(f"\tMullvad: {mullvad}")
         else:
-            print(f"{alert} Invalid option. Exiting.")
+            print_alert("Invalid option. Exiting.")
             return None
 
 

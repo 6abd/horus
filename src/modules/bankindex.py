@@ -3,22 +3,13 @@ import os
 import sys
 import json
 import requests
-from colorama import Fore # For text colour.
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    QUESTION,
+    SUCCESS,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -35,24 +26,23 @@ with open('./src/modules/var/pipes/api_config.json') as f:
 # Program.
 def bankindex():
 
-    bin = input(f"{question} Enter a BIN/IIN number: ")
+    bin_num = input(f"{QUESTION} Enter a BIN/IIN number: ")
 
-    request = requests.get(f"https://neutrinoapi.net/bin-lookup?bin-number={bin}", headers = {"User-ID": user, "API-Key": key}).json()
+    request = requests.get(f"https://neutrinoapi.net/bin-lookup?bin-number={bin_num}", headers = {"User-ID": user, "API-Key": key}).json()
 
     print("")
 
-    print(f"{notice} Checking BIN/IIN number: {bin}")
+    print_notice(f"Checking BIN/IIN number: {bin_num}")
+    print_response(f"Card Brand: {request['card-brand']}")
+    print_response(f"Card Category: {request['card-category']}")
+    print_response(f"Card Type: {request['card-type']}")
+    print_response(f"Country: {request['country']}")
+    print_response(f"Commercial: {request['is-commercial']}")
+    print_response(f"Prepaid: {request['is-prepaid']}")
+    print_response(f"Issuer: {request['issuer']}")
+    print_response(f"Validity: {request['valid']}")
 
-    print(f"{response} Card Brand: {request['card-brand']}")
-    print(f"{response} Card Category: {request['card-category']}")
-    print(f"{response} Card Type: {request['card-type']}")
-    print(f"{response} Country: {request['country']}")
-    print(f"{response} Commercial: {request['is-commercial']}")
-    print(f"{response} Prepaid: {request['is-prepaid']}")
-    print(f"{response} Issuer: {request['issuer']}")
-    print(f"{response} Validity: {request['valid']}")
-
-    print(success)
+    print(SUCCESS)
 # Run module_name module.
 if __name__ == '__main__':
     bankindex()
