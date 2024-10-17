@@ -6,20 +6,14 @@ import json
 import requests
 from colorama import Fore # For text colour.
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    PROMPT,
+    QUESTION,
+    SUCCESS,
+    TEXT,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -42,13 +36,13 @@ def run_shodan():
     SHODAN_API_KEY = (f"{key}")
     api = shodan.Shodan(SHODAN_API_KEY)
     print("\nShodan API:")
-    host_ip = input(f"{question} IP: ")
+    host_ip = input(f"{QUESTION} IP: ")
     host = api.host(f'{host_ip}')
     # Print information from API.
-    print(f"{response}","ISP: {}".format(host.get('isp', 'n/a'))) # Get ISP.
-    print(f"{response}","Organization: {}".format(host.get('org', 'n/a'))) # Get Org
-    print(f"{response}","Location: {}, {}".format(host.get('country_name', 'n/a'), host.get('city', 'n/a')))
-    print(f"{response}","Long/Lat: {} | {}".format(host.get('longitude','n/a'), host.get('latitude','n/a'))) # Get Lat/Long.
+    print_response(f"ISP: {host.get('isp', 'n/a')}") # Get ISP.
+    print_response(f"Organization: {host.get('org', 'n/a')}") # Get Org
+    print_response(f"Location: {host.get('country_name', 'n/a')}, {host.get('city', 'n/a')}")
+    print_response(f"Long/Lat: {host.get('longitude','n/a')} | {host.get('latitude','n/a')}") # Get Lat/Long.
     print("\nReserve API:")
     # Reserve API and base.
     reserve_direct_url = ("http://ip-api.com/")
@@ -56,12 +50,12 @@ def run_shodan():
     r = requests.get(f'{reserve_direct_url}{reserve_extend_url}{host_ip}')
     r_dict = r.json()
     # Print information from API.
-    print(f"{response}", "ISP:", r_dict['isp'])
-    print(f"{response}","Location:", r_dict['city'], "|", r_dict['zip'])
+    print_response(f"ISP: {r_dict['isp']}")
+    print_response(f"Location: {r_dict['city']} | {r_dict['zip']}")
     # Ports check.
     print("\nPorts:")
     for item in host['data']:
-        print(f"{prompt}","{} | {}".format(item['port'], item['transport']))
+        print(f"{PROMPT} {item['port']} | {item['transport']}")
         continue
     # Vuln check.
     print("\nVulns:")
@@ -70,12 +64,12 @@ def run_shodan():
         contents = file.read()
         search_word = ("SAFE")
         if search_word in contents:
-            print (f'{notice} Heartbleed: {Fore.GREEN}SECURE{text}\n')
+            print_notice(f' Heartbleed: {Fore.GREEN}SECURE{TEXT}\n')
         else:
-            print (f'{notice} Heartbleed: {Fore.RED}VULNERABLE{text}\n')
+            print_notice(f' Heartbleed: {Fore.RED}VULNERABLE{TEXT}\n')
     os.system("rm report.log")
 
-    print(success)
+    print(SUCCESS)
 # Run Shodan module.
 if __name__ == '__main__':
     run_shodan()

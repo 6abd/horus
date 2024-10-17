@@ -1,25 +1,15 @@
 # Imports.
 import os
 import sys
-import json
-import requests
-from colorama import Fore # For text colour.
+
 import pyshark
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    QUESTION,
+    SUCCESS,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -62,60 +52,60 @@ def get_packet_info(packet):
 def analysis(cap):
     for pkt in cap:
         print(f"\nPacket #{pkt.number}")
-        print(f"{response} Protocol: {pkt.highest_layer}")
-        print(f"{response} Length: {pkt.length} bytes")
-        print(f"{response} Time: {pkt.sniff_time}")
+        print_response(f"Protocol: {pkt.highest_layer}")
+        print_response(f"Length: {pkt.length} bytes")
+        print_response(f"Time: {pkt.sniff_time}")
 
         if hasattr(pkt, 'ip'):
-            print(f"{response} Source IP: {pkt.ip.src}")
-            print(f"{response} Destination IP: {pkt.ip.dst}")
+            print_response(f"Source IP: {pkt.ip.src}")
+            print_response(f"Destination IP: {pkt.ip.dst}")
         else:
-            print(f"{notice} Source IP: N/A")
-            print(f"{notice} Destination IP: N/A")
+            print_notice(f"Source IP: N/A")
+            print_notice(f"Destination IP: N/A")
 
         if hasattr(pkt, 'tcp'):
-            print(f"{response} Source Port: {pkt.tcp.srcport}")
-            print(f"{response} Destination Port: {pkt.tcp.dstport}")
-            print(f"{response} TCP Flags: {pkt.tcp.flags}")
+            print_response(f"Source Port: {pkt.tcp.srcport}")
+            print_response(f"Destination Port: {pkt.tcp.dstport}")
+            print_response(f"TCP Flags: {pkt.tcp.flags}")
         elif hasattr(pkt, 'udp'):
-            print(f"{response} Source Port: {pkt.udp.srcport}")
-            print(f"{response} Destination Port: {pkt.udp.dstport}")
+            print_response(f"Source Port: {pkt.udp.srcport}")
+            print_response(f"Destination Port: {pkt.udp.dstport}")
         else:
-            print(f"{notice} Source Port: N/A")
-            print(f"{notice} Destination Port: N/A")
+            print_notice(f"Source Port: N/A")
+            print_notice(f"Destination Port: N/A")
 
         # Display additional protocol-specific information
         if hasattr(pkt, 'http'):
             if hasattr(pkt.http, 'host'):
-                print(f"{response} HTTP Host: {pkt.http.host}")
+                print_response(f"HTTP Host: {pkt.http.host}")
         elif hasattr(pkt, 'dns'):
             if hasattr(pkt.dns, 'qry_name'):
-                print(f"{response} DNS Query Name: {pkt.dns.qry_name}")
+                print_response(f"DNS Query Name: {pkt.dns.qry_name}")
 
-        print(f"{response} Info: {get_packet_info(pkt)}")
+        print_response(f"Info: {get_packet_info(pkt)}")
 
 # Program.
 def falcon():
-    option = input(f"{question} (1) Sniff for packets or (2) use saved capture file: ")
+    option = input(f"{QUESTION} (1) Sniff for packets or (2) use saved capture file: ")
     if option == "1":
-        inter = input(f"{question} Enter an interface: ")
-        filter = input(f"{question} Enter a BPF filter if you would like (Press enter if not): ")
-        sniff_num = int(input(f"{question} How many packets to sniff for? "))
+        inter = input(f"{QUESTION} Enter an interface: ")
+        filter = input(f"{QUESTION} Enter a BPF filter if you would like (Press enter if not): ")
+        sniff_num = int(input(f"{QUESTION} How many packets to sniff for? "))
 
         cap = pyshark.LiveCapture(interface=inter, bpf_filter=filter)
         cap.sniff(sniff_num)
 
         analysis(cap)
-        print(success)
+        print(SUCCESS)
 
     if option == "2":
         print()
-        path = input(f"{question} Enter a capture file path: ")
-        filter = input(f"{question} Enter a display filter if you would like (Press enter if not): ")
+        path = input(f"{QUESTION} Enter a capture file path: ")
+        filter = input(f"{QUESTION} Enter a display filter if you would like (Press enter if not): ")
         cap = pyshark.FileCapture(path, display_filter=filter)
 
         analysis(cap)
-        print(success)
+        print(SUCCESS)
 
 
 # Run module_name module.
