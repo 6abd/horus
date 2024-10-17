@@ -17,44 +17,44 @@ DISCONNECTED = f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]" # Dis
 COMMAND = f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: " # Always asks for a command on a new line.
 
 
-def print_command(statement: str):
+def print_command(statement: str, *values: object):
     """
     Used to print command statements with the COMMAND visual prefix.
 
     Args:
         statement (str): The statement to print after the COMMAND prefix.
     """
-    print(f"{COMMAND} {statement}")
+    print(f"{COMMAND} {statement}", *values)
 
 
-def print_alert(statement: str):
+def print_alert(statement: str, *values: object):
     """
     Used to print alert statements with the ALERT visual prefix.
 
     Args:
         statement (str): The statement to print after the ALERT prefix.
     """
-    print(f"{ALERT} {statement}")
+    print(f"{ALERT} {statement}", *values)
 
 
-def print_response(statement: str):
+def print_response(statement: str, *values: object):
     """
     Used to print a statement with the RESPONSE visual prefix.
 
     Args:
         statement (str): THe statement to print after the RESPONSE prefix.
     """
-    print(f"{RESPONSE} {statement}")
+    print(f"{RESPONSE} {statement}", *values)
 
 
-def print_notice(statement: str):
+def print_notice(statement: str, *values: object):
     """
     Used to print a statement with the NOTICE visual prefix.
 
     Args:
         statement (str): THe statement to print after the NOTICE prefix.
     """
-    print(f"{NOTICE} {statement}")
+    print(f"{NOTICE} {statement}", *values)
 
 
 def command(col: AnsiCodes, text: str):
