@@ -52,51 +52,51 @@ def main_script():
         # OSINT.
         if option.lower() == "shodan":
             shodan.run_shodan()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "numlook":
             numlook.numlook()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "geolock":
             geolock.geolock()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "cryptotrace":
             cryptotrace.cryptotrace()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "vt":
             vt.vt()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "ovpn":
             ovpn.ovpn()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "pvpn":
             pvpn.pvpn()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "mactrace":
             mactrace.mactrace()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "flightinfo":
             flightinfo.flightinfo()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "wigle":
             wigle.wigle()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "bankindex":
             bankindex.bankindex()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "ytd":
             ytd.ytd()
-            os._exit(0)
+            sys.exit(0)
         # CASE-GEN.
         # SDB.
         # Loki.
@@ -105,36 +105,36 @@ def main_script():
         # Loki.
         if option.lower() == "lokigen":
             loki_keygen.loki_keygen()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "lokidiscovery":
             loki_discovery.loki_discovery()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "lokiencrypt":
             loki_encrypt.loki_encrypt()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "lokidecrypt":
             loki_decrypt.loki_decrypt()
-            os._exit(0)
+            sys.exit(0)
         # FORENSICS.
         # API config.
         if option.lower() == "apicon":
             apicon.apicon()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "exif":
             exif.exif()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "falcon":
             falcon.falcon()
-            os._exit(0)
+            sys.exit(0)
 
         if option.lower() == "recpull":
             recpull.recpull()
-            os._exit(0)
+            sys.exit(0)
 
 
     except KeyboardInterrupt:
@@ -142,4 +142,4 @@ def main_script():
         try:
             sys.exit(0)
         except SystemExit:
-            os._exit(0)
+            sys.exit(0)
