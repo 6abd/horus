@@ -1,27 +1,18 @@
 # Imports.
 import os
 import sys
-import json
-import requests
+
 from colorama import Fore # For text colour.
 import whois
 import dns.resolver
 import nmap
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    QUESTION,
+    SUCCESS,
+    print_notice,
+    print_response
+)
 
 # Pre-run.
 os.system("clear")
@@ -37,76 +28,90 @@ sys.tracebacklimit = 0
 
 # Program.
 def recpull():
-    domain = input(f"{question} Enter domain: ")
-    w = whois.whois(domain)
+    domain = input(f"{QUESTION} Enter domain: ")
+    w = whois.query(domain)
     print(f"\n{Fore.WHITE}[{Fore.LIGHTBLUE_EX}*{Fore.WHITE}] WHOIS:")
-    try:
-        print(f"{response} Registrar: {w['registrar']}")
-    except:
-        print(f"{notice} Registrar: Not found")
-    try:
-        print(f"{response} Last Updated: {w['updated_date'][0]}")
-    except:
-        print(f"{response} Last Updated: {w['updated_date']}")
-    try:
-        print(f"{response} Creation Date: {w['creation_date'][0]}")
-    except:
-        print(f"{response} Creation Date: {w['creation_date']}")
-    try:
-        print(f"{response} Expiration Date: {w['expiration_date'][0]}")
-    except:
-        print(f"{response} Creation Date: {w['creation_date']}")
+
+    if 'registrar' in w:
+        print_response(f"Registrar: {w['registrar']}")
+    else:
+        print_notice("Registrar: Not found")
+
+    if 'updated_date' in w:
+        if len(w['updated_date']) >= 1:
+            print_response(f"Last Updated: {w['updated_date'][0]}")
+        else:
+            print_response(f"Last Updated: {w['updated_date']}")
+    else:
+        print_notice("Last Updated: Not found")
+
+    if 'creation_date' in w:
+        if len(w['creation_date']) >= 1:
+            print_response(f"Creation Date: {w['creation_date'][0]}")
+        else:
+            print_response(f"Creation Date: {w['creation_date']}")
+    else:
+        print_notice("Creation Date: Not found")
+
+    if 'expiration_date' in w:
+        if len(w['expiration_date']) >= 1:
+            print_response(f"Expiration Date: {w['expiration_date'][0]}")
+        else:
+            print_response(f"Expiration Date: {w['expiration_date']}")
+    else:
+        print_response(f"Creation Date: {w['creation_date']}")
+
     try:
         for i in range(len(w['name_servers'])):
             if w['name_servers'][i][0].islower():
-                print(f"{response} Name Server: {w['name_servers'][i]}")
-    except:
-        print(f"{notice} Name Server: Not found")
+                print_response(f"Name Server: {w['name_servers'][i]}")
+    except Exception:
+        print_notice("Name Server: Not found")
     try:
         if len(w['emails']) == 1 or w['emails'] == str(w['emails']):
-            print(f"{response} Email: {w['emails']}")
+            print_response(f"Email: {w['emails']}")
         else:
             for i in range(len(w['emails'])):
-                print(f"{response} Email: {w['emails'][i]}")
-    except:
-        print(f"{notice} Email: Not found")
-    print(f"{response} Organization: {w['org']}")
-    print(f"{response} Name: {w['name']}")
-    print(f"{response} Address: {w['address']}")
-    print(f"{response} City: {w['city']}")
-    print(f"{response} State: {w['state']}")
-    print(f"{response} Registrant Postal Code: {w['registrant_postal_code']}")
-    print(f"{response} Country: {w['country']}")
+                print_response(f"Email: {w['emails'][i]}")
+    except Exception:
+        print_notice("Email: Not found")
+
+    print_response(f"Organization: {w['org']}")
+    print_response(f"Name: {w['name']}")
+    print_response(f"Address: {w['address']}")
+    print_response(f"City: {w['city']}")
+    print_response(f"State: {w['state']}")
+    print_response(f"Registrant Postal Code: {w['registrant_postal_code']}")
+    print_response(f"Country: {w['country']}")
 
     result = dns.resolver.query(domain, 'A')
-    print()
     for ipval in result:
         print(f"{Fore.WHITE}[{Fore.LIGHTBLUE_EX}*{Fore.WHITE}] DNS: {ipval.to_text()}")
 
     print(f"\n{Fore.WHITE}[{Fore.LIGHTBLUE_EX}*{Fore.WHITE}] MX Records:")
     try:
         for x in dns.resolver.resolve(domain, 'MX'):
-            print(f"{response} " + x.to_text())
-    except:
-        print(f"{notice} No MX records found.")
+            print_response(x.to_text())
+    except Exception:
+        print_notice("No MX records found.")
 
     print(f"\n{Fore.WHITE}[{Fore.LIGHTBLUE_EX}*{Fore.WHITE}] NMAP:")
     nm = nmap.PortScanner()
-    print(f"{response} Scanning via nmap...")
+    print_response("Scanning via nmap...")
     nm.scan(domain)
     for host in nm.all_hosts():
-        print('----------------------------------------------------')
-        print('Host : %s (%s)' % (host, nm[host].hostname()))
-        print('State : %s' % nm[host].state())
+        print('-' * 52)
+        print(f"Host : {host} ({nm[host].hostname()})")
+        print(f"State : {nm[host].state()}")
         for proto in nm[host].all_protocols():
-            print('----------')
-            print('Protocol : %s' % proto)
+            print('-' * 10)
+            print(f"Protocol : {proto}")
 
             lport = nm[host][proto].keys()
             sorted(lport)
             for port in lport:
-                print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
-    print(success)
+                print(f"port : {port}\tstate : {nm[host][proto][port]['state']}")
+    print(SUCCESS)
 
 
 

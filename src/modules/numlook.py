@@ -3,22 +3,12 @@ import os
 import sys
 import json
 import requests
-from colorama import Fore # For text colour.
 
-# Config (Prints).
-text = (f"{Fore.WHITE}") # Change the colour of text output in the client side
-dividers = (f"{Fore.LIGHTRED_EX}") # Changes the [], | and : in the client side
-success = (f"\n{Fore.WHITE}[{Fore.GREEN}SUCCESS{Fore.WHITE}] Program executed sucessfully.") # Success output.
-response = (f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}]")
-successfully = (f"{Fore.WHITE}[{Fore.GREEN}SUCCESSFULLY{Fore.WHITE}]") # Successfully output.
-failed = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}FAILED{Fore.WHITE}]") # Failed output.
-prompt = (f"{Fore.WHITE}[{Fore.YELLOW}»{Fore.WHITE}]") # Prompt output.
-notice = (f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}]") # Notice output.
-question =  (f"{Fore.WHITE}[{Fore.YELLOW}?{Fore.WHITE}]") # Alert output.
-alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output.
-exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
-disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
-command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+from ..utils import (
+    QUESTION,
+    SUCCESS,
+    print_response
+)
 
 
 
@@ -39,19 +29,19 @@ def numlook():
     direct_url = ("https://api.numlookupapi.com/")
     extend_url = ("v1/validate/")
     key_raw = ("?apikey=")
-    ndc = input(f"\n{question} National code (+44): ")
-    number = input(f"{question} Number: ")
+    ndc = input(f"\n{QUESTION} National code (+44): ")
+    number = input(f"{QUESTION} Number: ")
     # Get information from API.
     r = requests.get(f'{direct_url}{extend_url}{ndc}{number}{key_raw}{key}')
     r_dict = r.json()
     # Print information from API.
-    print(f"{response}","Live:", r_dict['valid'])
-    print(f"{response}","Country:", r_dict['country_name'], "|", r_dict['country_code'])
+    print_response(f"Live: {r_dict['valid']}")
+    print_response(f"Country: {r_dict['country_name']} | {r_dict['country_code']}")
     convert = lambda inp : inp if len(inp) > 0 else "n/a"
-    print(f"{response}","Location:", convert(r_dict['location']))
-    print(f"{response}","Carrier:", r_dict['carrier'])
-    print(f"{response}","Line type:", r_dict['line_type'], "\n")
-    print(success)
+    print_response(f"Location: {convert(r_dict['location'])}")
+    print_response(f"Carrier: {r_dict['carrier']}")
+    print_response(f"Line type: {r_dict['line_type']}\n")
+    print(SUCCESS)
 # Run numlook module.
 if __name__ == '__main__':
     numlook()
