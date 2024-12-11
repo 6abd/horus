@@ -62,8 +62,9 @@ def receive(config_file=None, auto_stop_seconds=None):
         args.append("--disable-text")
     
     if receiving != "t":
-        data_dir = input("Where would you like the files to be saved to? ")
-        args.append(f"--data-dir {data_dir}")
+        data_dir = input("Where would you like the files to be saved to? (blank for default)")
+        if data_dir  != "" and data_dir is not None:
+            args.append(f"--data-dir {data_dir}")
     
     filtered: list[str] = list(filter(lambda x: x is not None, args))
     print("Filtered: ", filtered)
@@ -97,6 +98,14 @@ def chat(config_file=None, auto_stop_seconds=None):
 
 
 def onionshare(advanced=False):
+    if PLATFORM == "win32":
+        print_alert("Using Onionshare from the commandline is not supported on Windows. Please use the GUI which you can download from:")
+        print("\t- https://onionshare.org/#download")
+        print_alert("You'll also need Tor installed, which you can download from:")
+        print("\t- winget install --id=TorProject.TorBrowser -e")
+        print("\t- Or visit https://www.torproject.org/download/ to download directly.")
+        return
+
     if not has_dependencies_installed():
         print("You need to have Tor installed to utilise this feature.")
         
@@ -111,8 +120,6 @@ def onionshare(advanced=False):
                     sudo dnf install tor
                     """
                 )
-            case "win32":
-                print("winget install --id=TorProject.TorBrowser -e")
             case "darwin":
                 print(
                     """
