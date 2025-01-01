@@ -76,7 +76,7 @@ def main_script():
 
         if option.lower() == "onionshare":
             onionshare.onionshare()
-            sys.exit()
+            sys.exit(0)
 
         if option.lower() == "ovpn":
             ovpn.ovpn()
