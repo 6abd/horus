@@ -120,14 +120,17 @@ def onionshare(advanced=False):
                     sudo dnf install tor
                     """
                 )
+                return
             case "darwin":
                 print(
                     """
                     brew install tor
                     """
                 )
+                return
             case _:
                 print("Unknown platform")
+                return
 
     running = True
     config_file = None
