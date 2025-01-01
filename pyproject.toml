@@ -9,6 +9,7 @@ dependencies = [
     "cryptography",
     "hashcat",
     "protonvpn-cli",
+    "onionshare_cli"
 ]
 
 [build-system]

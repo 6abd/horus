@@ -9,3 +9,4 @@ pyshark==0.6
 python-nmap==0.7.1
 whois==1.20240129.2
 dnspython==2.6.1
+onionshare_cli==2.6
