@@ -89,7 +89,7 @@ def print_hero():
     command(Fore.YELLOW, "Fallenflare | Bypass cloudflare.")
     command(Fore.GREEN,"Recpull | Pulls a tracert, whois, dns, mx history & namp, custom-formatted.")
     command(Fore.RED,"Anonfile | Up/download from Anonfiles.")
-    command(Fore.RED,"Onionshare | Up/download from Onionshare.")
+    command(Fore.YELLOW,"Onionshare | Up/download from Onionshare.")
     section("OSINT") 
     command(Fore.GREEN,"Shodan | Pull Shodan information from API.")
     command(Fore.GREEN,"WiGle | Use an API for SSID/BSSIDs stat, locations, & Bluetooth data.")

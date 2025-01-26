@@ -1,40 +1,44 @@
 # Main
+import os  # Operating System functions.
+import sys  # System stuff.
 from asyncio import subprocess
-import sys # System stuff.
-import os # Operating System functions.
+
 from colorama import Fore
 
-# For text colour.
-
+import src.modules.bankindex as bankindex
+import src.modules.cryptotrace as cryptotrace
+import src.modules.exif as exif
+import src.modules.falcon as falcon
+import src.modules.flightinfo as flightinfo
+import src.modules.geolock as geolock
+import src.modules.loki_decrypt as loki_decrypt
+import src.modules.loki_discovery as loki_discovery
+import src.modules.loki_encrypt as loki_encrypt
+# CASE-GEN.
+# SDB.
+# Loki.
+import src.modules.loki_keygen as loki_keygen
+import src.modules.mactrace as mactrace
+import src.modules.numlook as numlook
+import src.modules.onionshare as onionshare
+import src.modules.ovpn as ovpn
+import src.modules.pvpn as pvpn
 # Modules
 # SECURITY.
 # ENUMERATION.
 import src.modules.recpull as recpull
 # OSINT.
 import src.modules.shodan as shodan
-import src.modules.numlook as numlook
-import src.modules.geolock as geolock
-# CASE-GEN.
-# SDB.
-# Loki.
-import src.modules.loki_keygen as loki_keygen
-import src.modules.loki_discovery as loki_discovery
-import src.modules.loki_encrypt as loki_encrypt
-import src.modules.loki_decrypt as loki_decrypt
-import src.modules.cryptotrace as cryptotrace
 import src.modules.vt as vt
-import src.modules.mactrace as mactrace
-import src.modules.ovpn as ovpn
-import src.modules.pvpn as pvpn
-import src.modules.flightinfo as flightinfo
 import src.modules.wigle as wigle
-import src.modules.bankindex as bankindex
-import src.modules.exif as exif
 import src.modules.ytd as ytd
-import src.modules.falcon as falcon
 
 from . import apicon
-from .utils import print_hero, PROMPT
+from .utils import PROMPT, print_hero
+
+# For text colour.
+
+
 
 # Pre-run.
 os.system("clear")
@@ -68,6 +72,10 @@ def main_script():
 
         if option.lower() == "vt":
             vt.vt()
+            sys.exit(0)
+
+        if option.lower() == "onionshare":
+            onionshare.onionshare()
             sys.exit(0)
 
         if option.lower() == "ovpn":
