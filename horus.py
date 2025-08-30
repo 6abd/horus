@@ -84,198 +84,185 @@ ap.add_argument('-lokiprobe', help='\n', action="store_true")
 
 args = vars(parser.parse_args())
 
-
-from io import StringIO
-import sys
-
-class Capturing(list):
-    def __enter__(self):
-        self._stdout = sys.stdout
-        sys.stdout = self._stringio = StringIO()
-        return self
-    def __exit__(self, *args):
-        self.extend(self._stringio.getvalue().splitlines())
-        del self._stringio    # free up some memory
-        sys.stdout = self._stdout
-
 if args['apicon']: # Runs the apicon program.
     while True:
         try:
             apicon.apicon()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['pvpn']: # Runs the pvpn program.
     while True:
         try:
             pvpn.pvpn()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['ovpn']:
     while True:
         try:
             ovpn.ovpn()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
+            sys.exit(0)
 
 if args['shodan']: # Runs the shodan program.
     while True:
         try:
             shodan.run_shodan()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['numlook']: # Runs the numlook program.
     while True:
         try:
             numlook.numlook()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['geolock']: # Runs the geolock program.
     while True:
         try:
             geolock.geolock()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['mactrace']: # Runs the mactrace program.
     while True:
         try:
             mactrace.mactrace()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['cryptotrace']: # Runs the cryptotrace program.
     while True:
         try:
             cryptotrace.cryptotrace()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['vt']: # Runs the vt program.
   while True:
     try:
       vt.vt()
-      os._exit(0)
+      sys.exit(0)
     except Exception as error:
       print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-      os._exit(0)
+      sys.exit(0)
 
 if args['flightinfo']: # Runs the flightinfo program.
     while True:
         try:
             flightinfo.flightinfo()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['wigle']: # Runs the wigle program.
     while True:
         try:
             wigle.wigle()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['bankindex']: # Runs the bankindex program.
     while True:
         try:
             bankindex.bankindex()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['exif']: # Runs the exif program.
     while True:
         try:
             exif.exif()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['ytd']: # Runs the ytd program.
     while True:
         try:
             ytd.ytd()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['falcon']: # Runs the falcon program.
     while True:
         try:
             falcon.falcon()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['lokiencrypt']: # Runs the loki_encrypt program.
     while True:
         try:
             loki_encrypt.loki_encrypt()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['lokidecrypt']: # Runs the loki_decrypt program.
     while True:
         try:
             loki_decrypt.loki_decrypt()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['lokigen']: # Runs the loki_keygen program.
     while True:
         try:
             loki_keygen.loki_keygen()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['lokiprobe']: # Runs the loki_discovery program.
     while True:
         try:
             loki_discovery.loki_discovery()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 if args['recpull']: # Runs the recpull program.
     while True:
         try:
             recpull.recpull()
-            os._exit(0)
+            sys.exit(0)
         except Exception as error:
             print(f">_ {Fore.RED}FAILURE{Fore.WHITE}: {error}\n")
-            os._exit(0)
+            sys.exit(0)
 
 
 if __name__ == '__main__':
@@ -288,3 +275,4 @@ if __name__ == '__main__':
             sys.exit(0)
         except SystemExit:
             os._exit(0)
+
