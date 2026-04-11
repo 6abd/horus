@@ -46,11 +46,11 @@ def cryptotrace():
 
         # Loops through each transaction and prints details about it (rough for now)
         for i in range(0,len(transaction_info)):
-            print_response(f"Transaction Hash: {transaction_info['hash']}")
+            print_response(f"Transaction Hash: {transaction_info[i]['hash']}")
             print_response(f"Sender: {address}")
             print_response(f"Recipient: {transaction_info['out'][i]['addr']}")
             print_response(f"Value: {transaction_info['out'][i]['value']/100000000} BTC")
-            print_response(f"Unix Timestamp: {transaction_info['time']}")
+            print_response(f"Unix Timestamp: {transaction_info[i]['time']}")
             print("-------------------------------------------------------------------")
         print(SUCCESS)
     # Ethereum
