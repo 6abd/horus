@@ -141,9 +141,8 @@ def flightinfo():
         data = requests.get(f"https://opensky-network.org/api/flights/aircraft?icao24={icao24}&begin={begin}&end={end}").json()
         for i in range(0,len(data)):
             print_response(f"Aircraft Callsign: {data[i]['callsign']}")
+            print_response(f"Arrival Airport (Estimated): {data[i]['estArrivalAirport']}")
             print_response(f"Departure Airport (Estimated): {data[i]['estDepartureAirport']}")
-            print_response(f"Arrival Airport (Estimated): {data[i]['estArrivalAirport']}")
-            print_response(f"Arrival Airport (Estimated): {data[i]['estArrivalAirport']}")
             print_response(f"First Seen: {data[i]['firstSeen']}")
             print_response(f"Last Seen: {data[i]['lastSeen']}")
             print("-------------------------------------------------------------------")
