@@ -2,7 +2,7 @@ colorama==0.4.6
 cryptography==48.0.1
 Requests==2.32.2
 shodan==1.31.0
-pytest==8.1.1
+pytest==9.0.3
 exif==1.6.0
 pytube==15.0.0
 pyshark==0.6
