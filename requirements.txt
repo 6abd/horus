@@ -1,5 +1,5 @@
 colorama==0.4.6
-cryptography==42.0.5
+cryptography==48.0.1
 Requests==2.32.2
 shodan==1.31.0
 pytest==8.1.1
