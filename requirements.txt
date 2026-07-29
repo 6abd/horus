@@ -1,6 +1,6 @@
 colorama==0.4.6
 cryptography==48.0.1
-Requests==2.32.2
+Requests==2.33.0
 shodan==1.31.0
 pytest==9.0.3
 exif==1.6.0
